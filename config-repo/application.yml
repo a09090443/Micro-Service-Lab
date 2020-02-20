@@ -1,0 +1,35 @@
+properties:
+  server:
+    oauth: 192.168.1.154:8002
+    jdbc-api: 192.168.1.154:8010
+    api-gateway: 192.168.1.154:8090
+
+security:
+  basic:
+    enabled: false
+
+eureka:
+  instance:
+    hostname: 192.168.1.154
+    port: 8001
+    register-with-eureka: true # Auto register Eureka server, default is true.
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
+
+logging:
+  file: /tmp/logs/${properties.project}-${properties.env}.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    root: ${properties.log-level}
+    org.springframework.security: ${properties.log-level}
+    org.springframework.web: ${properties.log-level}
+    guru.springframework.controllers: ${properties.log-level}
+    org.hibernate: ${properties.log-level}
