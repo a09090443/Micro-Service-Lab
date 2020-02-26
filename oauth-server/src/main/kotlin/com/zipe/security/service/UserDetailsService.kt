@@ -58,7 +58,7 @@ class UserDetailsService : org.springframework.security.core.userdetails.UserDet
             grantedAuthorities.add(grantedAuthority)
         }
 
-        return User("", "", grantedAuthorities)
+        return User(userFromDatabase.loginId, userFromDatabase.password, grantedAuthorities)
     }
 
 }

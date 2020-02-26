@@ -4,6 +4,8 @@ properties:
   log-level: INFO
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
   datasource:
 #    type: com.zaxxer.hikari.HikariDataSource
 #    jdbc-url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
@@ -16,23 +18,18 @@ spring:
       username: dev
       password: 1qaz@WSX
       driver-class-name: com.mysql.cj.jdbc.Driver
-#      idle-timeout: 10000
-#      pool-name: master
-#      auto-commit: false
-#      connection-test-query: SELECT 1
     secondary:
       type: com.zaxxer.hikari.HikariDataSource
       jdbc-url: jdbc:mysql://192.168.1.151:3306/dev_data?characterEncoding=UTF-8
       username: dev
       password: 1qaz@WSX
       driver-class-name: com.mysql.jdbc.Driver
-      repository: com.zipe.repository2
 
     hikari:
       minimumIdle: 5
       maximumPoolSize: 20
       idleTimeout: 30000
-      poolName: Master
+      poolName: SpringBootJPAHikariCP
       maxLifetime: 2000000
       connectionTimeout: 30000
       autoCommit: false

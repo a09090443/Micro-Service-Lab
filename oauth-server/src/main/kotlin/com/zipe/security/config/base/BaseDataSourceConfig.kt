@@ -22,8 +22,7 @@ open class BaseDataSourceConfig {
         jpaProperties["hibernate.dialect"] = env.getProperty("hibernate.dialect")
         jpaProperties["hibernate.format_sql"] = env.getProperty("hibernate.format_sql")
         jpaProperties["hibernate.cache.region.factory_class"] = env.getProperty("hibernate.cache.region.factory_class")
-        jpaProperties["hibernate.cache.use_second_level_cache"] =
-            env.getProperty("hibernate.cache.use_second_level_cache")
+        jpaProperties["hibernate.cache.use_second_level_cache"] = env.getProperty("hibernate.cache.use_second_level_cache")
         jpaProperties["hibernate.cache.use_query_cache"] = env.getProperty("hibernate.cache.use_query_cache")
         jpaProperties["hibernate.cache.use_minimal_puts"] = env.getProperty("hibernate.cache.use_minimal_puts")
         return jpaProperties
