@@ -1,50 +1,86 @@
 package com.zipe.service.impl
 
 import com.zipe.entity.SysUserEntity
+import com.zipe.entity.SysUserLogonLogEntity
+import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
-import com.zipe.service.UserService
+import com.zipe.service.IUserService
+import com.zipe.utils.image.ImageUtils
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.sql.Timestamp
+import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
+@Transactional
 @Service("userService")
-class UserServiceImpl : UserService {
+class UserServiceImpl : IUserService {
+
+    private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
+
+    private var maxUserId: Int = 0
 
     @Autowired
-    lateinit var sysUserRepository: ISysUserRepository
+    private lateinit var sysUserRepository: ISysUserRepository
 
-    override fun getAllUsers(): List<SysUserEntity> {
-        return sysUserRepository.findAll()
+    @Autowired
+    private lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
+
+    @Autowired
+    private lateinit var passwordEncoder: PasswordEncoder
+
+    override fun findAllUsers(): MutableList<SysUserEntity> {
+        val list: MutableIterable<SysUserEntity> = sysUserRepository.findAll()
+        return list.toMutableList()
     }
 
-    override fun createNewUser(user: SysUserEntity): SysUserEntity {
-        return sysUserRepository.save(user)
+    override fun findUserByLoginId(loginId: String): SysUserEntity {
+        return sysUserRepository.findByLoginId(loginId)
     }
 
-    override fun getUserById(userId: Long): ResponseEntity<SysUserEntity> {
-        return sysUserRepository.findById(userId).map { article ->
-            ResponseEntity.ok(article)
-        }.orElse(ResponseEntity.notFound().build())
+    override fun findUserByEmail(email: String): SysUserEntity {
+        return sysUserRepository.findByEmail(email)
     }
 
-    override fun updateUserById(userId: Long, newUser: SysUserEntity): ResponseEntity<SysUserEntity> {
-        return sysUserRepository.findById(userId).map { existingUser ->
-            val updatedUser: SysUserEntity = existingUser
-                .copy(
-                    registerTime = Timestamp(System.currentTimeMillis()),
-                    loginId = newUser.loginId,
-                    password = newUser.password
-                )
-            ResponseEntity.ok().body(sysUserRepository.save(updatedUser))
-        }.orElse(ResponseEntity.notFound().build())
+    override fun findMaxLoginId(): SysUserEntity {
+        return sysUserRepository.findTopByOrderByLoginIdDesc()
     }
 
-    override fun deleteUserById(userId: Long): ResponseEntity<Void> {
-        return sysUserRepository.findById(userId).map { user ->
-            sysUserRepository.delete(user)
-            ResponseEntity<Void>(HttpStatus.OK)
-        }.orElse(ResponseEntity.notFound().build())
+    override fun saveUser(sysUserEntity: SysUserEntity) {
+        val checkUser: SysUserEntity = sysUserRepository.findByLoginId(sysUserEntity.loginId)
+        if (checkUser.userId.isNotBlank()) {
+            log.error("This login_id has been registered!!")
+//            throw Exception("This login_id has been registered!!")
+            return
+        }
+
+        var newUserId: Int = 0
+
+        val latestSysUser: SysUserEntity = sysUserRepository.findTopByOrderByLoginIdDesc()
+        if (latestSysUser.userId.isNotBlank()) {
+            maxUserId = latestSysUser.userId.toInt()
+        }
+
+        newUserId = maxUserId + 1
+        var newLoginId: String = newUserId.toString().padStart(6, '0')
+
+        sysUserEntity.password = passwordEncoder.encode(sysUserEntity.password)
+        sysUserEntity.userId = newLoginId
+        sysUserEntity.activated = true
+        sysUserEntity.registerTime = Date()
+        sysUserEntity.image = "$newLoginId." + ImageUtils.IMAGE_TYPE_JPG
+
+        try {
+            sysUserRepository.save(sysUserEntity)
+        } catch (e: Exception) {
+
+        }
     }
+
+    override fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity) {
+        sysUserLogonLogRepository.save(sysUserLogonLogEntity)
+    }
+
 }

@@ -4,12 +4,27 @@ properties:
   log-level: INFO
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
   datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
-    username: dev
-    password: 1qaz@WSX
-    driver-class-name: com.mysql.jdbc.Driver
+#    type: com.zaxxer.hikari.HikariDataSource
+#    jdbc-url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
+#    username: dev
+#    password: 1qaz@WSX
+#    driver-class-name: com.mysql.jdbc.Driver
+    primary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    secondary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev_data?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.jdbc.Driver
+
     hikari:
       minimumIdle: 5
       maximumPoolSize: 20
@@ -17,3 +32,5 @@ spring:
       poolName: SpringBootJPAHikariCP
       maxLifetime: 2000000
       connectionTimeout: 30000
+      autoCommit: false
+      connectionTestQuery: SELECT 1

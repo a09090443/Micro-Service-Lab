@@ -24,6 +24,7 @@ allprojects {
 
 subprojects {
 
+    apply(plugin = "java")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
@@ -52,7 +53,22 @@ subprojects {
         useJUnitPlatform()
     }
 
+    dependencies {
+//        "implementation"(project(":utility")) {
+//            exclude(module = "springframework")
+//        }
+        "testImplementation"("org.springframework.boot:spring-boot-starter-test")
+        "testImplementation"("org.junit.jupiter:junit-jupiter-api")
+        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
+    }
+
 }
+
+//project(":oauth-server") {
+//    dependencies {
+//        "implementation"(project(":utility"))
+//    }
+//}
 
 dependencies {
     // Make the root project archives configuration depend on every subproject
