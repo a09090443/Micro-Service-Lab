@@ -1,11 +1,13 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: oauth-server
   cloud:
     config:
       profile: dev
-      uri: http://192.168.1.154:8000
-      label: develop
+      uri: http://127.0.0.1:8000
+#      label: develop
 
 server:
   port: 8002

@@ -1,3 +1,4 @@
 rootProject.name = "Micro-Service-Lab"
-include("config-server")
 include("oauth-server")
+include("utility")
+include("config-server")
