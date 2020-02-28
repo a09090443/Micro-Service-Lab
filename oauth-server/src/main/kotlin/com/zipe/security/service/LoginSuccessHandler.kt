@@ -33,12 +33,8 @@ class LoginSuccessHandler : SavedRequestAwareAuthenticationSuccessHandler() {
         sysUserLogonLogEntity.status = LogonStatusEnum.LOGIN.name
         sysUserLogonLogEntity.loginTime = Date()
         userService.saveUserLogonRecord(sysUserLogonLogEntity)
-//            val userDetails: SysUserEntity = authentication.getPrincipal() as SysUserEntity
-//
-//            log.info("Login user:" + userDetails.lastName + "login" + request.getContextPath());
 
         log.info("IP:" + getIpAddress(request));
-
 
         super.onAuthenticationSuccess(request, response, authentication)
     }
