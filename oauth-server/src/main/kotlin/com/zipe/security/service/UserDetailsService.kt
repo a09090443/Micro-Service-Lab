@@ -54,7 +54,7 @@ class UserDetailsService : org.springframework.security.core.userdetails.UserDet
         var grantedAuthorities: MutableList<GrantedAuthority> = mutableListOf()
         for (sysAuthority: SysAuthorityEntity in userFromDatabase.authority) {
 
-            var grantedAuthority: GrantedAuthority = SimpleGrantedAuthority(sysAuthority.name)
+            var grantedAuthority: GrantedAuthority = SimpleGrantedAuthority(sysAuthority.name) as GrantedAuthority
             grantedAuthorities.add(grantedAuthority)
         }
 

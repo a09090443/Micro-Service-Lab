@@ -1,6 +1,7 @@
 package com.zipe.security.config
 
 import com.zipe.security.service.LoginSuccessHandler
+import com.zipe.security.service.LogoutSuccessHandler
 import com.zipe.security.service.UserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -35,12 +36,19 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var userDetailsService: UserDetailsService
 
+    @Autowired
+    private lateinit var loginSuccessHandler: LoginSuccessHandler
+
+    @Autowired
+    private lateinit var logoutSuccessHandler: LogoutSuccessHandler
+
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
             .requestMatchers()
-            .antMatchers("/", "/login**", "/oauth/authorize", "/oauth/confirm_access")
+            .antMatchers("/**", "/login**", "/oauth/authorize", "/oauth/confirm_access")
             .and()
             .authorizeRequests()
+            .antMatchers("/css/**", "/fonts/**", "/js/**", "/vendor/**", "/images/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()
@@ -48,7 +56,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .loginPage("/login")
             .usernameParameter("username")
             .passwordParameter("password")
-            .permitAll()
+            .permitAll().successHandler(loginSuccessHandler)
+            .and()
+            .logout().logoutSuccessHandler(logoutSuccessHandler)
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

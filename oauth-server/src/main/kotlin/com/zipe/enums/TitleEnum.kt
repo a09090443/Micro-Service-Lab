@@ -1,6 +1,6 @@
 package com.zipe.enums
 
-enum class Title {
+enum class TitleEnum {
     TEACHER,
     STUDENT
 }

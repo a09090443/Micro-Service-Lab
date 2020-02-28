@@ -91,6 +91,6 @@ data class SysUserEntity(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "title_id")]
     )
-    var sysUserTitle: Set<SysUserTitle> = mutableSetOf()
+    var sysUserTitle: Set<SysUserTitleEntity> = mutableSetOf()
 
 )

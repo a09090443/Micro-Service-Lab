@@ -1,6 +1,8 @@
 package com.zipe.service.impl
 
 import com.zipe.entity.SysUserEntity
+import com.zipe.entity.SysUserLogonLogEntity
+import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
 import com.zipe.service.IUserService
 import com.zipe.utils.image.ImageUtils
@@ -22,6 +24,9 @@ class UserServiceImpl : IUserService {
 
     @Autowired
     private lateinit var sysUserRepository: ISysUserRepository
+
+    @Autowired
+    private lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
 
     @Autowired
     private lateinit var passwordEncoder: PasswordEncoder
@@ -72,6 +77,10 @@ class UserServiceImpl : IUserService {
         } catch (e: Exception) {
 
         }
+    }
+
+    override fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity) {
+        sysUserLogonLogRepository.save(sysUserLogonLogEntity)
     }
 
 }

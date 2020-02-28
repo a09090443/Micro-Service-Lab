@@ -1,6 +1,6 @@
 package com.zipe.enums
 
-enum class Role {
+enum class RoleEnum {
     ROLE_ADMIN,
     ROLE_USER
 }
