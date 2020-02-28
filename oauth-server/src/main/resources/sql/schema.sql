@@ -148,7 +148,7 @@ CREATE TABLE `sys_user` (
   `register_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_hixwjgx0ynne0cq4tqvoawoda` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `sys_menu` (
   `menu_id` int(11) NOT NULL,
@@ -160,3 +160,11 @@ CREATE TABLE `sys_menu` (
   `parent_id` int(11) NOT NULL,
   PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `sys_user_logon_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
