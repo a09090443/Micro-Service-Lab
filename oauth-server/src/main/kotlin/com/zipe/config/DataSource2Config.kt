@@ -1,8 +1,8 @@
-package com.zipe.security.config
+package com.zipe.config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import com.zipe.security.config.base.BaseDataSourceConfig
+import com.zipe.config.base.BaseDataSourceConfig
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.context.properties.ConfigurationProperties

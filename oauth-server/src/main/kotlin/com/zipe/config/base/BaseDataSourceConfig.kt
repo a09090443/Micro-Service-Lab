@@ -1,4 +1,4 @@
-package com.zipe.security.config.base
+package com.zipe.config.base
 
 import com.zaxxer.hikari.HikariConfig
 import org.springframework.beans.factory.annotation.Autowired

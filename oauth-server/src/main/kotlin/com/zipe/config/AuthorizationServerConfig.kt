@@ -1,10 +1,11 @@
-package com.zipe.security.config
+package com.zipe.config
 
 import com.zipe.security.service.UserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer
@@ -33,9 +34,14 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     @Autowired
     private lateinit var userDetailsService: UserDetailsService
 
+    @Autowired
+    lateinit var passwordEncoder: PasswordEncoder
+
     @Bean
     fun jdbcClientDetailsService(): JdbcClientDetailsService {
-        return JdbcClientDetailsService(dataSource)
+        val details = JdbcClientDetailsService(dataSource)
+        details.setPasswordEncoder(passwordEncoder)
+        return details
     }
 
     @Bean
