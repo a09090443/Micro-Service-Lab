@@ -32,5 +32,5 @@ spring:
       poolName: SpringBootJPAHikariCP
       maxLifetime: 2000000
       connectionTimeout: 30000
-      autoCommit: false
+      autoCommit: true
       connectionTestQuery: SELECT 1

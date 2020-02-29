@@ -1,4 +1,4 @@
-package com.zipe.security.config
+package com.zipe.config
 
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken
 import org.springframework.security.oauth2.common.DefaultOAuth2RefreshToken

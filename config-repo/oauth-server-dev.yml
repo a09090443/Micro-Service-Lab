@@ -1,7 +1,7 @@
 properties:
   project: oauth-server
   env: dev
-  log-level: INFO
+  log-level: DEBUG
 
 spring:
   mvc:
@@ -18,12 +18,12 @@ spring:
       username: dev
       password: 1qaz@WSX
       driver-class-name: com.mysql.cj.jdbc.Driver
-    secondary:
-      type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev_data?characterEncoding=UTF-8
-      username: dev
-      password: 1qaz@WSX
-      driver-class-name: com.mysql.jdbc.Driver
+#    secondary:
+#      type: com.zaxxer.hikari.HikariDataSource
+#      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev_data?characterEncoding=UTF-8
+#      username: dev
+#      password: 1qaz@WSX
+#      driver-class-name: com.mysql.jdbc.Driver
 
     hikari:
       minimumIdle: 5
@@ -32,5 +32,5 @@ spring:
       poolName: SpringBootJPAHikariCP
       maxLifetime: 2000000
       connectionTimeout: 30000
-      autoCommit: false
+      autoCommit: true
       connectionTestQuery: SELECT 1

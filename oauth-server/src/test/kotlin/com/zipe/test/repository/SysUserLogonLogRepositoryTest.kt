@@ -6,6 +6,7 @@ import com.zipe.test.base.TestBase
 import org.junit.Ignore
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.crypto.password.PasswordEncoder
 import java.util.*
 
 class SysUserLogonLogRepositoryTest : TestBase() {
@@ -13,6 +14,10 @@ class SysUserLogonLogRepositoryTest : TestBase() {
     @Autowired
     lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
 
+    @Autowired
+    lateinit var passwordEncoder: PasswordEncoder
+
+    @Ignore
     @Test
     fun saveUserLog(){
     val sysUserLogonLogEntity = SysUserLogonLogEntity()
@@ -22,9 +27,10 @@ class SysUserLogonLogRepositoryTest : TestBase() {
         sysUserLogonLogRepository.save(sysUserLogonLogEntity)
     }
 
-    @Ignore
+//    @Ignore
     @Test
     fun getAllUsersLog() {
+        println(passwordEncoder.encode("secret"))
 
         val sysUserLogonLogList: MutableList<SysUserLogonLogEntity> = sysUserLogonLogRepository.findAll() as MutableList<SysUserLogonLogEntity>
         println(sysUserLogonLogList)

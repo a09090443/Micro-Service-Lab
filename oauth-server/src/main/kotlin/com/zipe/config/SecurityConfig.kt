@@ -1,4 +1,4 @@
-package com.zipe.security.config
+package com.zipe.config
 
 import com.zipe.security.service.LoginSuccessHandler
 import com.zipe.security.service.LogoutSuccessHandler
@@ -11,8 +11,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
+
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +21,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
     @Bean
