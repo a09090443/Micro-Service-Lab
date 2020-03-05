@@ -38,9 +38,10 @@ class ResourceServerConfig : ResourceServerConfigurerAdapter() {
         http.anonymous().disable()
             .requestMatchers().antMatchers("/**")
             .and().authorizeRequests()
-            .antMatchers("/jwt1/**").hasRole("ADMIN")
-            .antMatchers("/jwt2/**").authenticated()
-            .antMatchers("/jwt3/**").access("#oauth2.hasScope('read')")
+            .anyRequest().authenticated()
+//            .antMatchers("/jwt1/**").hasRole("ADMIN")
+//            .antMatchers("/jwt2/**").authenticated()
+//            .antMatchers("/jwt3/**").access("#oauth2.hasScope('read')")
             .and().exceptionHandling().accessDeniedHandler(OAuth2AccessDeniedHandler())
     }
 
