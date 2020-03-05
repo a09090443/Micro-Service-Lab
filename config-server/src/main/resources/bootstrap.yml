@@ -7,7 +7,7 @@ spring:
     config:
       server:
         native:
-          searchLocations: file://${user.home}/git/Micro-Service-Lab/config-repo
+          searchLocations: ../config-repo
 
 # Using Git to load config file
 #spring:
