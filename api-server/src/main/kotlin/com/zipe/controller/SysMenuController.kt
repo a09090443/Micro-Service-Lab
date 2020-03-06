@@ -1,6 +1,7 @@
 package com.zipe.controller
 
 import com.zipe.SysMenuVO
+import com.zipe.base.controller.BaseController
 import com.zipe.service.ISysMenuService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/menu")
-class SysMenuController {
+class SysMenuController : BaseController() {
 
     @Autowired
     lateinit var sysMenuService: ISysMenuService
