@@ -11,6 +11,7 @@ plugins {
     kotlin("plugin.jpa") version "1.3.61" apply false
 }
 extra["springCloudVersion"] = "Hoxton.RELEASE"
+extra["loremVersion"] = "2.1"
 
 allprojects {
     group = "com.zipe"

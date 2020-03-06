@@ -23,7 +23,7 @@ dependencies {
     implementation("com.zaxxer:HikariCP")
     implementation("org.hibernate:hibernate-ehcache")
     implementation("mysql:mysql-connector-java")
-    implementation("com.thedeanda:lorem:2.1")
+    implementation("com.thedeanda:lorem:${property("loremVersion")}")
 
     implementation(project(":utility"))
 }
