@@ -1,8 +1,8 @@
 package com.zipe.controller
 
-import com.zipe.SysMenuVO
 import com.zipe.base.controller.BaseController
 import com.zipe.service.ISysMenuService
+import com.zipe.vo.SysMenuVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +17,7 @@ class SysMenuController : BaseController() {
 
     @GetMapping("/sysMenuTree")
     fun getMenuTree(): MutableMap<String, List<SysMenuVO>> {
-        val list: List<SysMenuVO> = sysMenuService.findSysMenuTree() as List<SysMenuVO>
+        val list: List<SysMenuVO> = sysMenuService.findSysMenuTree()
 
         val map: MutableMap<String, List<SysMenuVO>> = mutableMapOf()
         map["menu"] = list

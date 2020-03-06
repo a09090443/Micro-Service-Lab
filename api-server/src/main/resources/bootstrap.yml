@@ -1,6 +1,12 @@
 spring:
   application:
     name: api-server
+  mvc:
+    locale: zh_TW
+  messages:
+    basename: i18n.messages
+    cache-duration: 1
+    encoding: UTF-8
   cloud:
     config:
       profile: dev

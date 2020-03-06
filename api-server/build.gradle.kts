@@ -20,6 +20,7 @@ dependencies {
     implementation("org.hibernate:hibernate-ehcache")
     implementation("mysql:mysql-connector-java")
     implementation("com.thedeanda:lorem:${property("loremVersion")}")
+    implementation("javax.validation:validation-api:${property("validationApiVersion")}")
 
     implementation(project(":utility"))
 }

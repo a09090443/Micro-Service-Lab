@@ -1,4 +1,4 @@
-package com.zipe
+package com.zipe.vo
 
 data class SysMenuVO(
     var menuId: Int = 0,
