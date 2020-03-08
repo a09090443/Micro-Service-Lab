@@ -56,7 +56,7 @@ class UserServiceImpl : IUserService {
             return
         }
 
-        var newUserId: Int = 0
+        var newUserId = 0
 
         val latestSysUser: SysUserEntity = sysUserRepository.findTopByOrderByLoginIdDesc()
         if (latestSysUser.userId.isNotBlank()) {
@@ -64,7 +64,7 @@ class UserServiceImpl : IUserService {
         }
 
         newUserId = maxUserId + 1
-        var newLoginId: String = newUserId.toString().padStart(6, '0')
+        val newLoginId: String = newUserId.toString().padStart(6, '0')
 
         sysUserEntity.password = passwordEncoder.encode(sysUserEntity.password)
         sysUserEntity.userId = newLoginId

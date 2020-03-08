@@ -1,5 +1,7 @@
 package com.zipe.base.controller
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
@@ -16,6 +18,9 @@ abstract class BaseController {
 
     protected lateinit var currentLocale: Locale
 
+    @Autowired
+    protected lateinit var messageSource: MessageSource
+
     @ModelAttribute
     open fun myModel(request: HttpServletRequest, response: HttpServletResponse, model: Model) {
         this.request = request
@@ -26,7 +31,7 @@ abstract class BaseController {
     /**
      * This method returns the principal[user-name] of logged-in user.
      */
-    open fun getPrincipal(): String {
+    protected open fun getPrincipal(): String {
         var userName: String = ""
         val principal = SecurityContextHolder.getContext().authentication.principal
         userName = if (principal is UserDetails) {
@@ -35,5 +40,11 @@ abstract class BaseController {
             principal.toString()
         }
         return userName
+    }
+
+    protected open fun getMessage(key: String, vararg args: String): String {
+        return if (key.isBlank()) {
+            ""
+        } else messageSource.getMessage(key, args, currentLocale)
     }
 }

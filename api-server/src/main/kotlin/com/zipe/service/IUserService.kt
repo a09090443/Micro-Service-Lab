@@ -2,6 +2,7 @@ package com.zipe.service
 
 import com.zipe.entity.SysUserEntity
 import com.zipe.entity.SysUserLogonLogEntity
+import com.zipe.vo.SysUserVO
 
 interface IUserService {
 
@@ -13,7 +14,7 @@ interface IUserService {
 
     fun findMaxLoginId(): SysUserEntity
 
-    fun saveUser(sysUserEntity: SysUserEntity)
+    fun saveUser(sysUserVO: SysUserVO)
 
     fun delUser(loginId: String)
 

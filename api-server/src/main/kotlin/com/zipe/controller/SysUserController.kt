@@ -3,6 +3,7 @@ package com.zipe.controller
 import com.zipe.base.controller.BaseController
 import com.zipe.entity.SysUserEntity
 import com.zipe.service.IUserService
+import com.zipe.vo.SysUserVO
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,8 +25,8 @@ class SysUserController : BaseController() {
     }
 
     @PostMapping
-    fun addUser(@RequestBody sysUserEntity: SysUserEntity): ResponseEntity<String> {
-        userService.saveUser(sysUserEntity)
+    fun addUser(@RequestBody sysUserVO: SysUserVO): ResponseEntity<String> {
+        userService.saveUser(sysUserVO)
         return ResponseEntity.ok("Add User Success")
     }
 
