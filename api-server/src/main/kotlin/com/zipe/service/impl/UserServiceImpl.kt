@@ -79,6 +79,10 @@ class UserServiceImpl : IUserService {
         }
     }
 
+    override fun delUser(loginId: String) {
+        sysUserRepository.deleteByLoginId(loginId)
+    }
+
     override fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity) {
         sysUserLogonLogRepository.save(sysUserLogonLogEntity)
     }

@@ -20,15 +20,18 @@ class SysUserController : BaseController() {
 
     @GetMapping("/{loginId}")
     fun getUser(@PathVariable(value = "loginId") loginId: String): SysUserEntity {
-
-        println(this.request)
         return userService.findUserByLoginId(loginId)
     }
 
     @PostMapping
     fun addUser(@RequestBody sysUserEntity: SysUserEntity): ResponseEntity<String> {
-
         userService.saveUser(sysUserEntity)
         return ResponseEntity.ok("Add User Success")
+    }
+
+    @DeleteMapping("/del/{loginId}")
+    fun delUser(@PathVariable loginId: String): ResponseEntity<String> {
+        userService.delUser(loginId)
+        return ResponseEntity.ok("Delete User Success")
     }
 }

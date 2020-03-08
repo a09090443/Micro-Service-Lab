@@ -15,6 +15,8 @@ interface IUserService {
 
     fun saveUser(sysUserEntity: SysUserEntity)
 
+    fun delUser(loginId: String)
+
     fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity)
 
 }

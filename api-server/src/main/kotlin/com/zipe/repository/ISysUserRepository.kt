@@ -15,6 +15,8 @@ interface ISysUserRepository : CrudRepository<SysUserEntity, Long> {
 
     fun findTopByOrderByLoginIdDesc(): SysUserEntity
 
+    fun deleteByLoginId(loginId: String)
+
 //    fun findTopByOrderByLoginIdDesc(loginId: String): SysUserEntity
 
 }
