@@ -6,6 +6,7 @@ import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
 import com.zipe.service.IUserService
 import com.zipe.utils.image.ImageUtils
+import com.zipe.vo.SysUserVO
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,7 @@ class UserServiceImpl : IUserService {
 
     private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
-    private var maxUserId: Int = 0
+    private var maxUserId = 0
 
     @Autowired
     private lateinit var sysUserRepository: ISysUserRepository
@@ -48,12 +49,15 @@ class UserServiceImpl : IUserService {
         return sysUserRepository.findTopByOrderByLoginIdDesc()
     }
 
-    override fun saveUser(sysUserEntity: SysUserEntity) {
-        val checkUser: SysUserEntity = sysUserRepository.findByLoginId(sysUserEntity.loginId)
+    override fun saveUser(sysUserVO: SysUserVO) {
+        val checkUser: SysUserEntity = sysUserRepository.findByLoginId(sysUserVO.loginId)
+        val newUserEntity: SysUserEntity
         if (checkUser.userId.isNotBlank()) {
             log.error("This login_id has been registered!!")
 //            throw Exception("This login_id has been registered!!")
             return
+        } else {
+            newUserEntity = SysUserEntity()
         }
 
         var newUserId = 0
@@ -66,17 +70,21 @@ class UserServiceImpl : IUserService {
         newUserId = maxUserId + 1
         val newLoginId: String = newUserId.toString().padStart(6, '0')
 
-        sysUserEntity.password = passwordEncoder.encode(sysUserEntity.password)
-        sysUserEntity.userId = newLoginId
-        sysUserEntity.activated = true
-        sysUserEntity.registerTime = Date()
-        sysUserEntity.image = "$newLoginId." + ImageUtils.IMAGE_TYPE_JPG
+        newUserEntity.password = passwordEncoder.encode(sysUserVO.password)
+        newUserEntity.userId = newLoginId
+        newUserEntity.activated = true
+        newUserEntity.registerTime = Date()
+        newUserEntity.image = "$newLoginId." + ImageUtils.IMAGE_TYPE_JPG
 
         try {
-            sysUserRepository.save(sysUserEntity)
+            sysUserRepository.save(newUserEntity)
         } catch (e: Exception) {
 
         }
+    }
+
+    override fun delUser(loginId: String) {
+        sysUserRepository.deleteByLoginId(loginId)
     }
 
     override fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity) {

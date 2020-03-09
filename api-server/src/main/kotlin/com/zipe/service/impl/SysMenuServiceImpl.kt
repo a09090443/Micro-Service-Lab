@@ -1,10 +1,10 @@
 package com.zipe.service.impl
 
-import com.zipe.SysMenuVO
 import com.zipe.base.service.BaseService
 import com.zipe.entity.SysMenuEntity
 import com.zipe.repository.ISysMenuRepository
 import com.zipe.service.ISysMenuService
+import com.zipe.vo.SysMenuVO
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +23,7 @@ class SysMenuServiceImpl : ISysMenuService, BaseService() {
         return sysMenuRepository.findAll() as MutableList<SysMenuEntity>
     }
 
-    override fun findSysMenuTree(): List<SysMenuVO?> {
+    override fun findSysMenuTree(): List<SysMenuVO> {
         val sysMenuEntityList = sysMenuRepository.findAll() as MutableList<SysMenuEntity>
         return getMappingMenu(sysMenuEntityList, 0)
     }
