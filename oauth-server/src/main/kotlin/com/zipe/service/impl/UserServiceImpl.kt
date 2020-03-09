@@ -20,21 +20,11 @@ class UserServiceImpl : IUserService {
 
     private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
-    private var maxUserId: Int = 0
-
     @Autowired
     private lateinit var sysUserRepository: ISysUserRepository
 
     @Autowired
     private lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
-
-    @Autowired
-    private lateinit var passwordEncoder: PasswordEncoder
-
-    override fun findAllUsers(): MutableList<SysUserEntity> {
-        val list: MutableIterable<SysUserEntity> = sysUserRepository.findAll()
-        return list.toMutableList()
-    }
 
     override fun findUserByLoginId(loginId: String): SysUserEntity {
         return sysUserRepository.findByLoginId(loginId)
@@ -44,40 +34,6 @@ class UserServiceImpl : IUserService {
         return sysUserRepository.findByEmail(email)
     }
 
-    override fun findMaxLoginId(): SysUserEntity {
-        return sysUserRepository.findTopByOrderByLoginIdDesc()
-    }
-
-    override fun saveUser(sysUserEntity: SysUserEntity) {
-        val checkUser: SysUserEntity = sysUserRepository.findByLoginId(sysUserEntity.loginId)
-        if (checkUser.userId.isNotBlank()) {
-            log.error("This login_id has been registered!!")
-//            throw Exception("This login_id has been registered!!")
-            return
-        }
-
-        var newUserId: Int = 0
-
-        val latestSysUser: SysUserEntity = sysUserRepository.findTopByOrderByLoginIdDesc()
-        if (latestSysUser.userId.isNotBlank()) {
-            maxUserId = latestSysUser.userId.toInt()
-        }
-
-        newUserId = maxUserId + 1
-        var newLoginId: String = newUserId.toString().padStart(6, '0')
-
-        sysUserEntity.password = passwordEncoder.encode(sysUserEntity.password)
-        sysUserEntity.userId = newLoginId
-        sysUserEntity.activated = true
-        sysUserEntity.registerTime = Date()
-        sysUserEntity.image = "$newLoginId." + ImageUtils.IMAGE_TYPE_JPG
-
-        try {
-            sysUserRepository.save(sysUserEntity)
-        } catch (e: Exception) {
-
-        }
-    }
 
     override fun saveUserLogonRecord(sysUserLogonLogEntity: SysUserLogonLogEntity) {
         sysUserLogonLogRepository.save(sysUserLogonLogEntity)
