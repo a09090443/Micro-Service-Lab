@@ -68,7 +68,7 @@ class UserServiceImpl : IUserService {
         }
 
         newUserId = maxUserId + 1
-        var newLoginId: String = newUserId.toString().padStart(6, '0')
+        val newLoginId: String = newUserId.toString().padStart(6, '0')
 
         newUserEntity.password = passwordEncoder.encode(sysUserVO.password)
         newUserEntity.userId = newLoginId

@@ -30,7 +30,7 @@ class SysUserController : BaseController() {
         return ResponseEntity.ok("Add User Success")
     }
 
-    @DeleteMapping("/del/{loginId}")
+    @DeleteMapping("/{loginId}")
     fun delUser(@PathVariable loginId: String): ResponseEntity<String> {
         userService.delUser(loginId)
         return ResponseEntity.ok("Delete User Success")
