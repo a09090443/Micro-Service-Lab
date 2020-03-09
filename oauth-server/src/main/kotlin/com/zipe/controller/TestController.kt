@@ -16,8 +16,6 @@ class TestController {
 
     @GetMapping(value = ["/test"])
     fun test(): MutableList<CurrentStatusEntity> {
-        val currentStatusList: MutableList<CurrentStatusEntity> =
-            currentStatusRepository.findAll() as MutableList<CurrentStatusEntity>
-        return currentStatusList
+        return currentStatusRepository.findAll() as MutableList<CurrentStatusEntity>
     }
 }
