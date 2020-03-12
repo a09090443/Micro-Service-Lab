@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler
 import org.springframework.stereotype.Service
+import java.lang.Exception
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Service("logoutSuccessHandler")
-class LogoutSuccessHandler() : SimpleUrlLogoutSuccessHandler() {
+class LogoutSuccessHandler : SimpleUrlLogoutSuccessHandler() {
 
     @Autowired
     private lateinit var userService: IUserService
@@ -25,15 +26,17 @@ class LogoutSuccessHandler() : SimpleUrlLogoutSuccessHandler() {
     override fun onLogoutSuccess(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        authentication: Authentication
+        authentication: Authentication?
     ) {
         if (authentication != null) {
             logger.debug("user:" + authentication.principal.toString() + "logout" + request.contextPath);
+        } else {
+            throw Exception("user data has problem!!")
         }
 
         val sysUserLogonLogEntity = SysUserLogonLogEntity()
         sysUserLogonLogEntity.loginId = authentication.principal.toString()
-        sysUserLogonLogEntity.status = LogonStatusEnum.LOGIN.name
+        sysUserLogonLogEntity.status = LogonStatusEnum.LOGOUT.name
         sysUserLogonLogEntity.loginTime = Date()
         userService.saveUserLogonRecord(sysUserLogonLogEntity)
 

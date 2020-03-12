@@ -41,20 +41,21 @@ class LoginSuccessHandler : SavedRequestAwareAuthenticationSuccessHandler() {
 
     fun getIpAddress(request: HttpServletRequest): String {
         var ip = request.getHeader("x-forwarded-for")
-        if (ip == null || ip.length == 0 || "unknown".equals(ip, ignoreCase = true)) {
+
+        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
             ip = request.getHeader("Proxy-Client-IP")
         }
-        if (ip == null || ip.length == 0 || "unknown".equals(ip, ignoreCase = true)) {
+        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
             ip = request.getHeader("WL-Proxy-Client-IP")
         }
-        if (ip == null || ip.length == 0 || "unknown".equals(ip, ignoreCase = true)) {
+        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
             ip = request.getHeader("HTTP_CLIENT_IP")
         }
-        if (ip == null || ip.length == 0 || "unknown".equals(ip, ignoreCase = true)) {
+        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
             ip = request.getHeader("HTTP_X_FORWARDED_FOR")
         }
-        if (ip == null || ip.length == 0 || "unknown".equals(ip, ignoreCase = true)) {
-            ip = request.getRemoteAddr()
+        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
+            ip = request.remoteAddr
         }
         return ip
     }

@@ -1,4 +1,4 @@
-package com.zipe.controller.Exception
+package com.zipe.controller.exception
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

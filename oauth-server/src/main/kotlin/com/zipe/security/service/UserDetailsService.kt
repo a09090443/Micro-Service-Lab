@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
-import org.springframework.transaction.annotation.Transactional
 
 @Component("userDetailsService")
 class UserDetailsService : org.springframework.security.core.userdetails.UserDetailsService {
@@ -30,7 +29,6 @@ class UserDetailsService : org.springframework.security.core.userdetails.UserDet
      *            username used on login
      * @return {@link UserDetails}
      */
-    @Transactional
     override fun loadUserByUsername(login: String?): UserDetails {
         log.debug("Authenticating {}", login)
 
