@@ -6,9 +6,8 @@ import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
 import com.zipe.service.IUserService
 import com.zipe.utils.image.ImageUtils
+import com.zipe.utils.log.logger
 import com.zipe.vo.SysUserVO
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -19,7 +18,7 @@ import java.util.*
 @Service("userService")
 class UserServiceImpl : IUserService {
 
-    private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
+    val logger = logger()
 
     private var maxUserId = 0
 
@@ -53,7 +52,7 @@ class UserServiceImpl : IUserService {
         val checkUser: SysUserEntity = sysUserRepository.findByLoginId(sysUserVO.loginId)
         val newUserEntity: SysUserEntity
         if (checkUser.userId.isNotBlank()) {
-            log.error("This login_id has been registered!!")
+            logger.error("This login_id has been registered!!")
 //            throw Exception("This login_id has been registered!!")
             return
         } else {

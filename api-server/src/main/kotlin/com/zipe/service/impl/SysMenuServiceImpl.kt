@@ -4,9 +4,8 @@ import com.zipe.base.service.BaseService
 import com.zipe.entity.SysMenuEntity
 import com.zipe.repository.ISysMenuRepository
 import com.zipe.service.ISysMenuService
+import com.zipe.utils.log.logger
 import com.zipe.vo.SysMenuVO
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Service("sysMenuService")
 class SysMenuServiceImpl : ISysMenuService, BaseService() {
-    private val logger: Logger = LoggerFactory.getLogger(SysMenuServiceImpl::class.java)
+    val logger = logger()
 
     @Autowired
     private lateinit var sysMenuRepository: ISysMenuRepository

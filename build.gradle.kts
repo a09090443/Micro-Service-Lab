@@ -13,6 +13,7 @@ plugins {
 extra["springCloudVersion"] = "Hoxton.RELEASE"
 extra["loremVersion"] = "2.1"
 extra["validationApiVersion"] = "2.0.1.Final"
+extra["slf4jApiVersion"] = "1.7.30"
 
 allprojects {
     group = "com.zipe"

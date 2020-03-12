@@ -3,18 +3,16 @@ package com.zipe.controller
 import com.zipe.base.controller.BaseController
 import com.zipe.entity.SysUserEntity
 import com.zipe.service.IUserService
+import com.zipe.utils.log.logger
 import com.zipe.vo.SysUserVO
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user")
 class SysUserController : BaseController() {
-    private val log: Logger = LoggerFactory.getLogger(SysUserController::class.java)
+    val logger = logger()
 
     @Autowired
     private lateinit var userService: IUserService
