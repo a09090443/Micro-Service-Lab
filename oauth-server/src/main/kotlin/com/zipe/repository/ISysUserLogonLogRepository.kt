@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ISysUserLogonLogRepository : CrudRepository<SysUserLogonLogEntity, Long> {
 
-    fun findByLoginId(loginId: String): SysUserLogonLogEntity
-
 }

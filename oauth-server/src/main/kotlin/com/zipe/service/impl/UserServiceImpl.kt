@@ -20,21 +20,11 @@ class UserServiceImpl : IUserService {
 
     private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
-    private var maxUserId: Int = 0
-
     @Autowired
     private lateinit var sysUserRepository: ISysUserRepository
 
     @Autowired
     private lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
-
-    @Autowired
-    private lateinit var passwordEncoder: PasswordEncoder
-
-    override fun findAllUsers(): MutableList<SysUserEntity> {
-        val list: MutableIterable<SysUserEntity> = sysUserRepository.findAll()
-        return list.toMutableList()
-    }
 
     override fun findUserByLoginId(loginId: String): SysUserEntity {
         return sysUserRepository.findByLoginId(loginId)

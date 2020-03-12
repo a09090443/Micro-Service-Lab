@@ -13,8 +13,4 @@ interface ISysUserRepository : CrudRepository<SysUserEntity, Long> {
 
     fun findByEmail(email: String): SysUserEntity
 
-    fun findTopByOrderByLoginIdDesc(): SysUserEntity
-
-//    fun findTopByOrderByLoginIdDesc(loginId: String): SysUserEntity
-
 }
