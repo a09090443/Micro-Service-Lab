@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse
 
 @Service("loginSuccessHandler")
 class LoginSuccessHandler : SavedRequestAwareAuthenticationSuccessHandler() {
-    private val log: Logger = LoggerFactory.getLogger(LoginSuccessHandler::class.java)
 
     @Autowired
     private lateinit var userService: IUserService
@@ -34,7 +33,7 @@ class LoginSuccessHandler : SavedRequestAwareAuthenticationSuccessHandler() {
         sysUserLogonLogEntity.loginTime = Date()
         userService.saveUserLogonRecord(sysUserLogonLogEntity)
 
-        log.info("IP:" + getIpAddress(request));
+        logger.info("IP:" + getIpAddress(request));
 
         super.onAuthenticationSuccess(request, response, authentication)
     }

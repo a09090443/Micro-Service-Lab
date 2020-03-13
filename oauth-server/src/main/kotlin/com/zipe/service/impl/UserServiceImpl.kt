@@ -6,6 +6,7 @@ import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
 import com.zipe.service.IUserService
 import com.zipe.utils.image.ImageUtils
+import com.zipe.utils.log.logger
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,7 +19,7 @@ import java.util.*
 @Service("userService")
 class UserServiceImpl : IUserService {
 
-    private val log: Logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
+    val logger = logger()
 
     @Autowired
     private lateinit var sysUserRepository: ISysUserRepository

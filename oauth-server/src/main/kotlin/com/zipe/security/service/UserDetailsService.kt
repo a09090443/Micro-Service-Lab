@@ -4,6 +4,7 @@ import com.zipe.entity.SysAuthorityEntity
 import com.zipe.entity.SysUserEntity
 import com.zipe.exception.UserNotActivatedException
 import com.zipe.service.IUserService
+import com.zipe.utils.log.logger
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component
 @Component("userDetailsService")
 class UserDetailsService : org.springframework.security.core.userdetails.UserDetailsService {
 
-    val log: Logger = LoggerFactory.getLogger(UserDetailsService::class.java)
+    val logger = logger()
 
     @Autowired
     private lateinit var userService: IUserService
@@ -30,7 +31,7 @@ class UserDetailsService : org.springframework.security.core.userdetails.UserDet
      * @return {@link UserDetails}
      */
     override fun loadUserByUsername(login: String?): UserDetails {
-        log.debug("Authenticating {}", login)
+        logger.debug("Authenticating {}", login)
 
         var lowercaseLogin: String = login?.toLowerCase() ?: ""
 

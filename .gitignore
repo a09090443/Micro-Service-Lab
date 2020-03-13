@@ -3,6 +3,8 @@
 
 *.lock
 
+*.kotlin_module
+
 .gradle/buildOutputCleanup/
 
 .gradle/5.2.1/
@@ -15,6 +17,7 @@
 
 *.at
 
-oauth-server/build/
+*/build/
 
-oauth-server/out/
+*/out/
+
