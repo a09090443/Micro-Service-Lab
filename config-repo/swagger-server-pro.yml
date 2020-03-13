@@ -1,0 +1,4 @@
+properties:
+  project: swagger-server
+  env: production
+  log-level: INFO
