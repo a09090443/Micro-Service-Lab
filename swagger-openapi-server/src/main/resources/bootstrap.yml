@@ -1,0 +1,17 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: swagger-server
+  cloud:
+    config:
+      profile: dev
+      uri: http://127.0.0.1:8000
+#      label: develop
+
+server:
+  port: 8003
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
