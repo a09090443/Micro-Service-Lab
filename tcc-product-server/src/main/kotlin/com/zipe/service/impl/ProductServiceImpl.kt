@@ -89,8 +89,10 @@ class ProductServiceImpl : IProductService, BaseService() {
             productTransactionRepository.save(accountTransaction)
             productVO.responseCode = "OK"
 
+        } else {
+            productVO.responseCode = "INSUFFICIENT_INVENTORY"
         }
-        TODO()
+        return productVO
     }
 
     fun cancellableFindTransaction(orderId: Long): TProductTransactionEntity {
