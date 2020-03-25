@@ -96,7 +96,8 @@ class ProductServiceImpl : IProductService, BaseService() {
     }
 
     @Transactional
-    fun cancellableFindTransaction(orderId: Long): TProductTransactionEntity {
+    fun cancellableFindTransaction(orderId: Long): ProductVO {
+        val productVO = ProductVO()
         val productTx = productTransactionRepository.findByOrderId(orderId)
         if (productTx.id > 0) {
             val now = LocalDateTime.now()
@@ -104,11 +105,15 @@ class ProductServiceImpl : IProductService, BaseService() {
                 productTx.state = ReservingState.CANCELLED.status
                 productTx.doneAt = now
                 if(productTransactionRepository.compareAndSetState(productTx.id, ReservingState.TRYING.status, ReservingState.CANCELLED.status) <= 0){
-                    return productTransactionRepository.findByOrderId(orderId)
+//                    return productTransactionRepository.findByOrderId(orderId)
                 }
                 val id = productTx.productId
+                if (productRepository.increaseInventory(productTx.amount, id) <= 0) {
+                    productVO.responseCode = "ACCOUNT_ROLLBACK_FAILURE"
+                }
+                return productVO
             }
         }
-        return TProductTransactionEntity()
+        return productVO
     }
 }

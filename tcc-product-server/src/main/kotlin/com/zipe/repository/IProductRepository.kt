@@ -18,4 +18,11 @@ interface IProductRepository : CrudRepository<TProductEntity, Long> {
                 "where pe.id in :id and pe.inventory - :amount >= 0"
     )
     fun deductInventory(@Param(value = "amount") amount: Long, @Param(value = "id") id: Long): Long
+
+    @Modifying
+    @Query(
+        "UPDATE TProductEntity pe SET pe.inventory = pe.inventory + :amount " +
+                "where pe.id in :id"
+    )
+    fun increaseInventory(@Param(value = "amount") amount: Long, @Param(value = "id") id: Long): Long
 }
