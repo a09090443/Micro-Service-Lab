@@ -95,8 +95,20 @@ class ProductServiceImpl : IProductService, BaseService() {
         return productVO
     }
 
+    @Transactional
     fun cancellableFindTransaction(orderId: Long): TProductTransactionEntity {
-
+        val productTx = productTransactionRepository.findByOrderId(orderId)
+        if (productTx.id > 0) {
+            val now = LocalDateTime.now()
+            if (productTx.state == ReservingState.TRYING.status && now.isAfter(productTx.expireAt)){
+                productTx.state = ReservingState.CANCELLED.status
+                productTx.doneAt = now
+                if(productTransactionRepository.compareAndSetState(productTx.id, ReservingState.TRYING.status, ReservingState.CANCELLED.status) <= 0){
+                    return productTransactionRepository.findByOrderId(orderId)
+                }
+                val id = productTx.productId
+            }
+        }
         return TProductTransactionEntity()
     }
 }
