@@ -15,7 +15,13 @@ dependencies {
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
+//    implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
+
+//    implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+//    implementation("com.graphql-java:graphql-java-tools:5.2.4")
+    implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java:graphql-java-tools:5.2.4")
 
     implementation("com.zaxxer:HikariCP")
     implementation("org.hibernate:hibernate-ehcache")
