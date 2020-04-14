@@ -1,0 +1,48 @@
+properties:
+  project: oauth-redis-server
+  env: dev
+  log-level: INFO
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    jdbc-url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
+#    username: dev
+#    password: 1qaz@WSX
+#    driver-class-name: com.mysql.jdbc.Driver
+    primary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#    secondary:
+#      type: com.zaxxer.hikari.HikariDataSource
+#      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev_data?characterEncoding=UTF-8
+#      username: dev
+#      password: 1qaz@WSX
+#      driver-class-name: com.mysql.jdbc.Driver
+
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      poolName: SpringBootJPAHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+      autoCommit: true
+      connectionTestQuery: SELECT 1
+
+  redis:
+    host: 192.168.1.151
+    port: 6379
+    database: 0
+    password:
+    jedis:
+      pool:
+        mini-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
