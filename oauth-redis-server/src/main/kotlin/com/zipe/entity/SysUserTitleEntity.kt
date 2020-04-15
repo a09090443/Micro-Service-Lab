@@ -1,8 +1,9 @@
 package com.zipe.entity
 
-import org.springframework.format.annotation.DateTimeFormat
-import java.util.*
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 import javax.validation.constraints.NotEmpty
 
 @Entity
