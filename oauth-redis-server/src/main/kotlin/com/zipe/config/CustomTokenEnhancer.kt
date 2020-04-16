@@ -12,20 +12,28 @@ class CustomTokenEnhancer : TokenEnhancer {
     override fun enhance(accessToken: OAuth2AccessToken?, authentication: OAuth2Authentication?): OAuth2AccessToken? {
         if (accessToken is DefaultOAuth2AccessToken) {
 
-            val token: DefaultOAuth2AccessToken = (accessToken as DefaultOAuth2AccessToken)
+            val token: DefaultOAuth2AccessToken = accessToken
             token.value = getNewToken()
 
-            val refreshToken: OAuth2RefreshToken = token.getRefreshToken()
-            if (refreshToken is DefaultOAuth2RefreshToken) {
-                token.refreshToken = DefaultOAuth2RefreshToken(getNewToken())
+            token.refreshToken?.let {
+                DefaultOAuth2RefreshToken(getNewToken())
             }
 
-            val additionalInformation: MutableMap<String, Any> = mutableMapOf()
-            authentication?.let {
-                additionalInformation["client_id"] = it.oAuth2Request.clientId
-                token.additionalInformation = additionalInformation
-                return token
+            authentication ?: token.additionalInformation.run {
+                mutableMapOf<String, Any?>("client_id" to authentication?.oAuth2Request?.clientId)
             }
+
+            return token
+//            val additionalInformation = mutableMapOf<String, Any>().let {
+//                it["client_id"] = accessToken..clientId
+//                token.additionalInformation = additionalInformation
+//                return token
+//            }
+//            authentication?.let {
+//                additionalInformation["client_id"] = it.oAuth2Request.clientId
+//                token.additionalInformation = additionalInformation
+//                return token
+//            }
 //            if (authentication != null) {
 //                additionalInformation["client_id"] = authentication.oAuth2Request.clientId
 //                token.additionalInformation = additionalInformation

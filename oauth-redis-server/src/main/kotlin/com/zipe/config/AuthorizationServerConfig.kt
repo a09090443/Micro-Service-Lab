@@ -1,5 +1,6 @@
 package com.zipe.config
 
+import com.zipe.security.service.CustomClientDetailService
 import com.zipe.security.service.UserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -49,6 +50,11 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     }
 
     @Bean
+    fun customClientDetailService(): CustomClientDetailService {
+        return CustomClientDetailService()
+    }
+
+    @Bean
     fun tokenStore(): TokenStore {
 //        return JdbcTokenStore(dataSource)
         val redisTokenStore = RedisTokenStore(connectionFactory)
@@ -80,7 +86,7 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     }
 
     override fun configure(clients: ClientDetailsServiceConfigurer) {
-        clients.withClientDetails(jdbcClientDetailsService())
+        clients.withClientDetails(customClientDetailService())
     }
 
     override fun configure(endpoints: AuthorizationServerEndpointsConfigurer) {

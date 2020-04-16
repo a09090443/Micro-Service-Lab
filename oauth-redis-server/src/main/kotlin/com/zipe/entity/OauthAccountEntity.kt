@@ -35,10 +35,10 @@ data class OauthAccountEntity(
     val authorities: String = "",
 
     @Column(name = "access_token_validity", nullable = true, length = 11)
-    val accessTokenValidity: Int = 0,
+    val accessTokenValidity: Int ?= 0,
 
     @Column(name = "refresh_token_validity", nullable = true, length = 11)
-    val refreshTokenValidity: Int = 0,
+    val refreshTokenValidity: Int ?= 0,
 
     @Column(name = "additional_information", nullable = true, length = 4096)
     val additionalInformation: String = "",
