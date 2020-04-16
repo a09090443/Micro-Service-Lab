@@ -15,7 +15,7 @@ class CustomTokenEnhancer : TokenEnhancer {
             val token: DefaultOAuth2AccessToken = (accessToken as DefaultOAuth2AccessToken)
             token.value = getNewToken()
 
-            val refreshToken: OAuth2RefreshToken = token.getRefreshToken()
+            val refreshToken: OAuth2RefreshToken = token.refreshToken
             if (refreshToken is DefaultOAuth2RefreshToken) {
                 token.refreshToken = DefaultOAuth2RefreshToken(getNewToken())
             }
@@ -23,15 +23,10 @@ class CustomTokenEnhancer : TokenEnhancer {
             val additionalInformation: MutableMap<String, Any> = mutableMapOf()
             authentication?.let {
                 additionalInformation["client_id"] = it.oAuth2Request.clientId
+                additionalInformation["account_id"] = "test"
                 token.additionalInformation = additionalInformation
                 return token
             }
-//            if (authentication != null) {
-//                additionalInformation["client_id"] = authentication.oAuth2Request.clientId
-//                token.additionalInformation = additionalInformation
-//
-//                return token
-//            }
         }
 
         return accessToken

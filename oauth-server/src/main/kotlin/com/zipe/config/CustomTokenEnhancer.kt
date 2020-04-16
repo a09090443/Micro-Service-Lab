@@ -15,7 +15,7 @@ class CustomTokenEnhancer : TokenEnhancer {
             val token: DefaultOAuth2AccessToken = (accessToken as DefaultOAuth2AccessToken)
             token.value = getNewToken()
 
-            val refreshToken: OAuth2RefreshToken = token.getRefreshToken()
+            val refreshToken: OAuth2RefreshToken = token.refreshToken
             if (refreshToken is DefaultOAuth2RefreshToken) {
                 token.refreshToken = DefaultOAuth2RefreshToken(getNewToken())
             }
