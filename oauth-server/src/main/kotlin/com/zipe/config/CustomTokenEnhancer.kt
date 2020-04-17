@@ -1,6 +1,8 @@
 package com.zipe.config
 
-import org.springframework.security.oauth2.common.*
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken
+import org.springframework.security.oauth2.common.DefaultOAuth2RefreshToken
+import org.springframework.security.oauth2.common.OAuth2AccessToken
 import org.springframework.security.oauth2.provider.OAuth2Authentication
 import org.springframework.security.oauth2.provider.token.TokenEnhancer
 import java.util.*
@@ -15,23 +17,12 @@ class CustomTokenEnhancer : TokenEnhancer {
             token.refreshToken?.let {
                 DefaultOAuth2RefreshToken(getNewToken())
             }
-//            token.refreshToken = refreshToken
 
+            authentication?.let {
+                token.additionalInformation = mapOf("client_id" to authentication.oAuth2Request.clientId)
+            }
 
-//            authentication ?: token.additionalInformation.run {
-//                mutableMapOf<String, Any?>("client_id" to authentication?.oAuth2Request?.clientId)
-//            }
-//            val additionalInformation =
-//                mutableMapOf<String, Any?>("client_id" to authentication?.oAuth2Request?.clientId)
-
-//            token.additionalInformation = additionalInformation
             return token
-//            if (authentication != null) {
-//                additionalInformation["client_id"] = authentication.oAuth2Request.clientId
-//                token.additionalInformation = additionalInformation
-//
-//                return token
-//            }
         }
 
         return accessToken
