@@ -1,7 +1,7 @@
 package com.zipe.service
 
-import com.zipe.entity.SysUserEntity
-import com.zipe.entity.SysUserLogonLogEntity
+import com.zipe.entity.system.SysUserEntity
+import com.zipe.entity.system.SysUserLogonLogEntity
 import com.zipe.vo.SysUserVO
 
 interface IUserService {

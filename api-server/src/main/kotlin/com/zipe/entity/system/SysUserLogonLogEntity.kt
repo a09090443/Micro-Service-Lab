@@ -1,4 +1,4 @@
-package com.zipe.entity
+package com.zipe.entity.system
 
 import org.springframework.format.annotation.DateTimeFormat
 import java.util.*

@@ -1,7 +1,6 @@
-package com.zipe.repository
+package com.zipe.repository.system
 
-import com.zipe.entity.SysUserEntity
-import org.springframework.data.jpa.repository.JpaRepository
+import com.zipe.entity.system.SysUserEntity
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 

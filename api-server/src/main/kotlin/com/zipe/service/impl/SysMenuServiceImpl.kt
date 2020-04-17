@@ -1,8 +1,8 @@
 package com.zipe.service.impl
 
 import com.zipe.base.service.BaseService
-import com.zipe.entity.SysMenuEntity
-import com.zipe.repository.ISysMenuRepository
+import com.zipe.entity.system.SysMenuEntity
+import com.zipe.repository.system.ISysMenuRepository
 import com.zipe.service.ISysMenuService
 import com.zipe.utils.log.logger
 import com.zipe.vo.SysMenuVO

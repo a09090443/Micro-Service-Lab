@@ -11,6 +11,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
@@ -21,6 +22,7 @@ dependencies {
     implementation("mysql:mysql-connector-java")
     implementation("com.thedeanda:lorem:${property("loremVersion")}")
     implementation("javax.validation:validation-api:${property("validationApiVersion")}")
+//    implementation("com.googlecode.log4jdbc:${property("log4jdbcVersion")}")
 
     implementation(project(":utility"))
 }

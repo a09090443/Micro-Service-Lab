@@ -1,4 +1,4 @@
-package com.zipe.entity
+package com.zipe.entity.system
 
 import javax.persistence.*
 
@@ -35,4 +35,3 @@ data class SysMenuEntity(
     var parentId: Int = 0
 
 )
-

@@ -15,6 +15,7 @@ extra["loremVersion"] = "2.1"
 extra["validationApiVersion"] = "2.0.1.Final"
 extra["slf4jApiVersion"] = "1.7.30"
 extra["swaggerVersion"] = "2.9.2"
+extra["log4jdbcVersion"] = "1.2"
 
 allprojects {
     group = "com.zipe"

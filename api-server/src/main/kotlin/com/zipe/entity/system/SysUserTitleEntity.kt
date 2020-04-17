@@ -1,9 +1,7 @@
-package com.zipe.entity
+package com.zipe.entity.system
 
-import org.springframework.format.annotation.DateTimeFormat
-import java.util.*
 import javax.persistence.*
-import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.*
 
 @Entity
 @Table(name = "sys_user_title")

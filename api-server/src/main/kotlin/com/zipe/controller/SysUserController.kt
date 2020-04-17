@@ -1,7 +1,7 @@
 package com.zipe.controller
 
 import com.zipe.base.controller.BaseController
-import com.zipe.entity.SysUserEntity
+import com.zipe.entity.system.SysUserEntity
 import com.zipe.service.IUserService
 import com.zipe.utils.log.logger
 import com.zipe.vo.SysUserVO

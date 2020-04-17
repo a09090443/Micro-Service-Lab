@@ -1,12 +1,12 @@
-package com.zipe.repository
+package com.zipe.repository.system
 
-import com.zipe.entity.SysMenuEntity
+import com.zipe.entity.system.SysMenuEntity
+import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository("sysMenuRepository")
-interface ISysMenuRepository : CrudRepository<SysMenuEntity, Long> {
+interface ISysMenuRepository : JpaRepository<SysMenuEntity, Long> {
 
     @Query("SELECT S.menuName FROM SysMenuEntity S WHERE S.parentId = 0")
     fun findAllByLevel(): List<SysMenuEntity>

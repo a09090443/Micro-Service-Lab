@@ -1,9 +1,9 @@
 package com.zipe.service.impl
 
-import com.zipe.entity.SysUserEntity
-import com.zipe.entity.SysUserLogonLogEntity
-import com.zipe.repository.ISysUserLogonLogRepository
-import com.zipe.repository.ISysUserRepository
+import com.zipe.entity.system.SysUserEntity
+import com.zipe.entity.system.SysUserLogonLogEntity
+import com.zipe.repository.system.ISysUserLogonLogRepository
+import com.zipe.repository.system.ISysUserRepository
 import com.zipe.service.IUserService
 import com.zipe.utils.image.ImageUtils
 import com.zipe.utils.log.logger

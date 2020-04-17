@@ -1,6 +1,6 @@
 package com.zipe.service
 
-import com.zipe.entity.SysMenuEntity
+import com.zipe.entity.system.SysMenuEntity
 import com.zipe.vo.SysMenuVO
 
 interface ISysMenuService {

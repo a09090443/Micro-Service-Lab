@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
@@ -20,23 +19,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
 
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    entityManagerFactoryRef = "primaryDbEntityManagerFactory", basePackages = [
-        "com.zipe.repository"],
-    transactionManagerRef = "primaryDbTransactionManager"
+    entityManagerFactoryRef = "productDbEntityManagerFactory",
+    basePackages = ["com.zipe.repository.product"],
+    transactionManagerRef = "productDbTransactionManager"
 )
-class DataSource1Config : BaseDataSourceConfig() {
+class DataSourceProductConfig : BaseDataSourceConfig() {
 
     @Autowired
     private lateinit var baseHikariConfig: HikariConfig
 
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource.primary")
-    @Bean(name = ["primaryDbDataSource"])
+    @Bean(name = ["productDbDataSource"])
+    @ConfigurationProperties(prefix = "spring.datasource.product")
     fun mySqlDataSource(): DataSource {
+
         val ds = DataSourceBuilder.create().build()
         if (ds is HikariDataSource) {
             baseHikariConfig.copyStateTo(ds)
@@ -45,8 +43,7 @@ class DataSource1Config : BaseDataSourceConfig() {
         return ds
     }
 
-    @Primary
-    @Bean(name = ["primaryDbEntityManagerFactory"])
+    @Bean(name = ["productDbEntityManagerFactory"])
     fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean? {
         val vendorAdapter = HibernateJpaVendorAdapter()
         vendorAdapter.setGenerateDdl(false)
@@ -56,18 +53,18 @@ class DataSource1Config : BaseDataSourceConfig() {
 
         val factory = LocalContainerEntityManagerFactoryBean()
         factory.jpaVendorAdapter = vendorAdapter
-        factory.setPackagesToScan("com.zipe.entity")
+        factory.setPackagesToScan("com.zipe.entity.product")
+
         factory.setJpaPropertyMap(hibernateConfig())
 
         factory.dataSource = mySqlDataSource()
         return factory
     }
 
-    @Primary
-    @Bean(name = ["primaryDbTransactionManager"])
+    @Bean(name = ["productDbTransactionManager"])
     fun transactionManager(
-        @Qualifier("primaryDbEntityManagerFactory") primaryDbEntityManagerFactory: EntityManagerFactory?
+        @Qualifier("productDbEntityManagerFactory") productDbEntityManagerFactory: EntityManagerFactory?
     ): PlatformTransactionManager? {
-        return primaryDbEntityManagerFactory?.let { JpaTransactionManager(it) }
+        return productDbEntityManagerFactory?.let { JpaTransactionManager(it) }
     }
 }
