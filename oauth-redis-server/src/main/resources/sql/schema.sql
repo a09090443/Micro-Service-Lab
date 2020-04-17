@@ -15,50 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `oauth_access_token`
---
+-- oauth_account definition
 
-DROP TABLE IF EXISTS `oauth_access_token`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oauth_access_token` (
-  `token_id` varchar(256) DEFAULT NULL,
-  `token` mediumblob,
-  `authentication_id` varchar(256) NOT NULL,
-  `user_name` varchar(256) DEFAULT NULL,
-  `client_id` varchar(256) DEFAULT NULL,
-  `authentication` mediumblob,
-  `refresh_token` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`authentication_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `oauth_approvals`
---
-
-DROP TABLE IF EXISTS `oauth_approvals`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oauth_approvals` (
-  `userId` varchar(256) DEFAULT NULL,
-  `clientId` varchar(256) DEFAULT NULL,
-  `scope` varchar(256) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
-  `expiresAt` datetime DEFAULT NULL,
-  `lastModifiedAt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `oauth_client_details`
---
-
-DROP TABLE IF EXISTS `oauth_client_details`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oauth_client_details` (
+CREATE TABLE `oauth_account` (
   `client_id` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `resource_ids` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `client_secret` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -70,36 +29,12 @@ CREATE TABLE `oauth_client_details` (
   `refresh_token_validity` int(11) DEFAULT NULL,
   `additional_information` varchar(4096) COLLATE utf8_unicode_ci DEFAULT NULL,
   `autoapprove` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_user` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `oauth_code`
---
-
-DROP TABLE IF EXISTS `oauth_code`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oauth_code` (
-  `code` varchar(256) DEFAULT NULL,
-  `authentication` blob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `oauth_refresh_token`
---
-
-DROP TABLE IF EXISTS `oauth_refresh_token`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oauth_refresh_token` (
-  `token_id` varchar(256) DEFAULT NULL,
-  `token` mediumblob,
-  `authentication` mediumblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 CREATE TABLE `sys_authority` (
   `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
