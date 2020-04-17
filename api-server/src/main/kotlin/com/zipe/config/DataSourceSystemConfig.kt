@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 import javax.persistence.EntityManagerFactory
 import javax.sql.DataSource
 
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
@@ -33,7 +32,6 @@ class DataSourceSystemConfig : BaseDataSourceConfig() {
     @Autowired
     private lateinit var baseHikariConfig: HikariConfig
 
-    @Primary
     @ConfigurationProperties(prefix = "spring.datasource.system")
     @Bean(name = ["systemDbDataSource"])
     fun mySqlDataSource(): DataSource {
@@ -45,7 +43,6 @@ class DataSourceSystemConfig : BaseDataSourceConfig() {
         return ds
     }
 
-    @Primary
     @Bean(name = ["systemDbEntityManagerFactory"])
     fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean? {
         val vendorAdapter = HibernateJpaVendorAdapter()
@@ -63,7 +60,6 @@ class DataSourceSystemConfig : BaseDataSourceConfig() {
         return factory
     }
 
-    @Primary
     @Bean(name = ["systemDbTransactionManager"])
     fun transactionManager(
         @Qualifier("systemDbEntityManagerFactory") systemDbEntityManagerFactory: EntityManagerFactory?
