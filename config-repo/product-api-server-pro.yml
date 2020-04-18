@@ -1,0 +1,60 @@
+properties:
+  project: product-api-server
+  env: production
+  log-level: INFO
+
+security:
+  oauth2:
+    resource:
+      id: oauth2-resource
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token
+      prefer-token-info: true
+      filter-order: 3
+    client:
+      client-id: api_service
+      client-secret: secret
+      access-token-uri: http://${properties.server.oauth}/oauth/token
+      user-authorization-uri: http://${properties.server.oauth}/oauth/authorize
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  datasource:
+
+    system:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    product:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.151:3306/db1?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    primary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.151:3306/db3?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    secondary:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://192.168.1.151:3306/db4?characterEncoding=UTF-8
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      poolName: SpringBootJPAHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+      autoCommit: true
+      connectionTestQuery: SELECT 1
