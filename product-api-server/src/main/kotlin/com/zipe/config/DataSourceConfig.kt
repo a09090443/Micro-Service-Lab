@@ -46,15 +46,28 @@ class DataSourceConfig : BaseDataSourceConfig() {
     @Bean
     fun dataSource(): DynamicDataSource {
         return DynamicDataSource().run {
-            val targetDataSources = mapOf<Any, Any>().apply {
-                this["primaryDataSource" to primaryDataSource()]
-                this["secondaryDataSource" to secondaryDataSource()]
-            }
+
+            val dataSourceBuilder1 = DataSourceBuilder.create()
+            dataSourceBuilder1.driverClassName("com.mysql.cj.jdbc.Driver")
+            dataSourceBuilder1.url("jdbc:mysql://192.168.1.151:3306/db3?characterEncoding=UTF-8")
+            dataSourceBuilder1.username("dev")
+            dataSourceBuilder1.password("1qaz@WSX")
+
+            val dataSourceBuilder2 = DataSourceBuilder.create()
+            dataSourceBuilder2.driverClassName("com.mysql.cj.jdbc.Driver")
+            dataSourceBuilder2.url("jdbc:mysql://192.168.1.151:3306/db4?characterEncoding=UTF-8")
+            dataSourceBuilder2.username("dev")
+            dataSourceBuilder2.password("1qaz@WSX")
+
+            val datasource1:DataSource = dataSourceBuilder1.build()
+            val datasource2:DataSource = dataSourceBuilder2.build()
+
+            val targetDataSources = mapOf<Any, Any>("primaryDataSource" to datasource1, "secondaryDataSource" to datasource2)
             dataSourceNames.add("primaryDataSource")
             dataSourceNames.add("secondaryDataSource")
             val dataSource = DynamicDataSource().apply {
                 this.setTargetDataSources(targetDataSources)
-                this.setDefaultTargetDataSource(primaryDataSource())
+                this.setDefaultTargetDataSource(datasource1)
                 this.afterPropertiesSet()
             }
             dataSource
