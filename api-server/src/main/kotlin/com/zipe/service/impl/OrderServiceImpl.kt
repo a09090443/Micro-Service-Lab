@@ -19,7 +19,6 @@ class OrderServiceImpl : IOrderService, BaseService() {
     private lateinit var orderRepository: IOrderRepository
 
     override fun findOrderByUserId(userId: Long): OrderEntity {
-//        setDataSourceName("primaryDataSource")
         return orderRepository.findByUserId(userId);
     }
 

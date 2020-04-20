@@ -24,7 +24,7 @@ class OrderServiceTest : TestBase() {
 
     @Test
     fun findAllTest() {
-        setDataSourceName("primaryDataSource")
+//        setDataSourceName("secondaryDataSource")
         println(getDataSourceName())
         val orderList = orderService.findAll()
         println(orderList)

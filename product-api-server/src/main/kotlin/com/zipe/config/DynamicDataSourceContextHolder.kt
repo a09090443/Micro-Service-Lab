@@ -1,5 +1,7 @@
 package com.zipe.config
 
+import com.zipe.annotation.DBRouting
+
 val dataSourceNames = mutableListOf<String>()
 
 object DynamicDataSourceContextHolder {
@@ -8,7 +10,7 @@ object DynamicDataSourceContextHolder {
 
     fun setDataSourceName(name: String): Unit = contextHolder.set(name)
 
-    fun getDataSourceName(): String = contextHolder.get()
+    fun getDataSourceName(): String = contextHolder.get() ?: DBRouting.PRIMARY_DATASOURCE
 
     fun clearDataSourceName(): Unit = contextHolder.remove()
 

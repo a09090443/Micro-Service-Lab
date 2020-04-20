@@ -1,5 +1,6 @@
 package com.zipe.service.impl
 
+import com.zipe.annotation.DBRouting
 import com.zipe.base.service.BaseService
 import com.zipe.entity.order.OrderProductionEntity
 import com.zipe.repository.order.IOrderProductionRepository
@@ -21,6 +22,7 @@ class OrderServiceImpl : IOrderService, BaseService() {
         return orderProductionRepository.findByUserId(userId)
     }
 
+    @DBRouting(DBRouting.SECONDARY_DATASOURCE)
     override fun findAll(): List<OrderProductionEntity> {
         return orderProductionRepository.findAll()
     }

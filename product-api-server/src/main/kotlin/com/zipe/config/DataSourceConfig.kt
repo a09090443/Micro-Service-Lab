@@ -1,7 +1,9 @@
 package com.zipe.config
 
+import com.zipe.annotation.DBRouting
 import com.zipe.config.base.BaseDataSourceConfig
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
@@ -37,9 +39,11 @@ class DataSourceConfig : BaseDataSourceConfig() {
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
     fun secondaryDataSource(): DataSource = DataSourceBuilder.create().build()
 
+    @Qualifier(DBRouting.PRIMARY_DATASOURCE)
     @Autowired
     private lateinit var primaryDataSource: DataSource
 
+    @Qualifier(DBRouting.SECONDARY_DATASOURCE)
     @Autowired
     private lateinit var secondaryDataSource: DataSource
 
@@ -47,27 +51,12 @@ class DataSourceConfig : BaseDataSourceConfig() {
     fun dataSource(): DynamicDataSource {
         return DynamicDataSource().run {
 
-            val dataSourceBuilder1 = DataSourceBuilder.create()
-            dataSourceBuilder1.driverClassName("com.mysql.cj.jdbc.Driver")
-            dataSourceBuilder1.url("jdbc:mysql://192.168.1.151:3306/db3?characterEncoding=UTF-8")
-            dataSourceBuilder1.username("dev")
-            dataSourceBuilder1.password("1qaz@WSX")
-
-            val dataSourceBuilder2 = DataSourceBuilder.create()
-            dataSourceBuilder2.driverClassName("com.mysql.cj.jdbc.Driver")
-            dataSourceBuilder2.url("jdbc:mysql://192.168.1.151:3306/db4?characterEncoding=UTF-8")
-            dataSourceBuilder2.username("dev")
-            dataSourceBuilder2.password("1qaz@WSX")
-
-            val datasource1:DataSource = dataSourceBuilder1.build()
-            val datasource2:DataSource = dataSourceBuilder2.build()
-
-            val targetDataSources = mapOf<Any, Any>("primaryDataSource" to datasource1, "secondaryDataSource" to datasource2)
-            dataSourceNames.add("primaryDataSource")
-            dataSourceNames.add("secondaryDataSource")
+            val targetDataSources = mapOf<Any, Any>("primaryDataSource" to primaryDataSource, "secondaryDataSource" to secondaryDataSource)
+            dataSourceNames.add(DBRouting.PRIMARY_DATASOURCE)
+            dataSourceNames.add(DBRouting.SECONDARY_DATASOURCE)
             val dataSource = DynamicDataSource().apply {
                 this.setTargetDataSources(targetDataSources)
-                this.setDefaultTargetDataSource(datasource1)
+                this.setDefaultTargetDataSource(primaryDataSource)
                 this.afterPropertiesSet()
             }
             dataSource
@@ -91,16 +80,6 @@ class DataSourceConfig : BaseDataSourceConfig() {
         factory.dataSource = dataSource()
         return factory
     }
-
-//    @Primary
-//    @Bean(name = ["dbSessionFactory"])
-//    fun dbSessionFactory(): LocalSessionFactoryBean? {
-//        val sessionFactoryBean = LocalSessionFactoryBean()
-//        sessionFactoryBean.setDataSource(dataSource())
-//        sessionFactoryBean.setPackagesToScan("com.zipe")
-//        sessionFactoryBean.hibernateProperties = hibernateProperties()
-//        return sessionFactoryBean
-//    }
 
     @Bean(name = ["multiTransactionManager"])
     fun multiTransactionManager(): PlatformTransactionManager? {
