@@ -1,8 +1,13 @@
 package com.zipe.service
 
-import com.zipe.entity.order.OrderProductionEntity
+import com.zipe.entity.order.OrderListEntity
 
 interface IOrderService {
-    fun findOrderByUserId(userId: Long): OrderProductionEntity
-    fun findAll(): List<OrderProductionEntity>
+    fun findAll(): List<OrderListEntity>
+
+    fun findOrderByUserId(userId: Long): OrderListEntity
+
+    fun insertOrder(order: OrderListEntity)
+
+    fun updateOrder(order: OrderListEntity)
 }

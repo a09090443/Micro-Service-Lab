@@ -22,7 +22,7 @@ dependencies {
     implementation("mysql:mysql-connector-java")
     implementation("com.thedeanda:lorem:${property("loremVersion")}")
     implementation("javax.validation:validation-api:${property("validationApiVersion")}")
-//    implementation("com.googlecode.log4jdbc:${property("log4jdbcVersion")}")
+    implementation("com.googlecode.log4jdbc:log4jdbc:${property("log4jdbcVersion")}")
 
     implementation(project(":utility"))
 }

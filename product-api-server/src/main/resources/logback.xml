@@ -27,28 +27,6 @@
         <appender-ref ref="file" />
     </root>
 
-<!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
-<!--    <logger name="jdbc.connection" additivity="false" level="FATAL">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="FILE" />-->
-<!--    </logger>-->
-<!--    <logger name="jdbc.resultset" additivity="false" level="INFO">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="FILE" />-->
-<!--    </logger>-->
-<!--    <logger name="jdbc.audit" additivity="false" level="INFO">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="FILE" />-->
-<!--    </logger>-->
-<!--    <logger name="jdbc.sqlonly" additivity="false" level="DEBUG">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="FILE" />-->
-<!--    </logger>-->
-<!--    <logger name="jdbc.sqltiming" additivity="false" level="DEBUG">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="FILE" />-->
-<!--    </logger>-->
-
     <!-- logback为java中的包 -->
     <logger name="com.dudu.controller"/>
     <!--logback.LogbackDemo：类的全路径 -->
