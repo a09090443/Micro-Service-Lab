@@ -13,9 +13,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices
 
-@Configuration
-@EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
+//@EnableResourceServer
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 class ResourceServerConfig : ResourceServerConfigurerAdapter() {
 
     @Bean
@@ -43,14 +43,7 @@ class ResourceServerConfig : ResourceServerConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.anonymous().disable()
-            .requestMatchers().antMatchers("/**")
-            .and().authorizeRequests()
-            .anyRequest().authenticated()
-//            .antMatchers("/jwt1/**").hasRole("ADMIN")
-//            .antMatchers("/jwt2/**").authenticated()
-//            .antMatchers("/jwt3/**").access("#oauth2.hasScope('read')")
-            .and().exceptionHandling().accessDeniedHandler(OAuth2AccessDeniedHandler())
+        http.authorizeRequests().anyRequest().permitAll()
     }
 
     override fun configure(resources: ResourceServerSecurityConfigurer) {

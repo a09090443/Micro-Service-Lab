@@ -1,0 +1,8 @@
+type Query {
+    findAllProducts: [ProductEntity]
+}
+
+type ProductEntity {
+    id: String!
+    name: String!
+}

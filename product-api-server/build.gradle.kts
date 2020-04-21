@@ -24,6 +24,9 @@ dependencies {
     implementation("javax.validation:validation-api:${property("validationApiVersion")}")
     implementation("com.googlecode.log4jdbc:log4jdbc:${property("log4jdbcVersion")}")
 
+    implementation("com.graphql-java:graphql-spring-boot-starter:${property("graphqlVersion")}")
+    implementation("com.graphql-java:graphiql-spring-boot-starter:${property("graphqlVersion")}")
+    implementation("com.graphql-java:graphql-java-tools:${property("graphqlJavaVersion")}")
     implementation(project(":utility"))
 }
 

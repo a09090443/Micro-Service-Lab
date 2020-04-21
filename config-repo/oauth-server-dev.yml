@@ -34,3 +34,24 @@ spring:
       connectionTimeout: 30000
       autoCommit: true
       connectionTestQuery: SELECT 1
+
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: false
+    exception-handlers-enabled: true
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+  tools:
+    schema-location-pattern: "**/*.graphqls"
+    introspection-enabled: true
+    use-mutation: true
+
+graphiql:
+  mapping: /graphiql
+  endpoint: /graphql
+  enabled: true
+  pageTitle: GraphiQL
+  cdn:
+    enabled: false
+    version: 0.11.11
