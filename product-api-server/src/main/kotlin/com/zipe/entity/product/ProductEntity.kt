@@ -1,27 +1,28 @@
-package com.zipe.entity.order
+package com.zipe.entity.product
 
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
-import javax.persistence.*
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
-@Table(name = "order_list")
-data class OrderListEntity(
+@Table(name = "product")
+data class ProductEntity(
 
     @Id
     @Column(name = "id", nullable = false, length = 20, unique = true)
     var id: Long = 0,
 
-    @Column(name = "user_id", length = 20)
-    var userId: Long = 0,
-
-    @Column(name = "product_id", length = 20)
-    var productId: String = "",
+    @Column(name = "name", length = 50)
+    var name: String = "",
 
     @Column(name = "price", length = 10)
     var price: Long = 0,
+
+    @Column(name = "inventory", length = 20)
+    var inventory: Long = 0,
 
     @Column(name = "update_time", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")

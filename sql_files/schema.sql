@@ -168,3 +168,15 @@ CREATE TABLE `sys_user_logon_log` (
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+CREATE TABLE `product` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` int(10) unsigned DEFAULT NULL,
+  `inventory` bigint(20) unsigned DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
