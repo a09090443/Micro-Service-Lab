@@ -1,7 +1,6 @@
 package com.zipe.test.service
 
 import com.zipe.repository.order.IOrderRepository
-import com.zipe.service.IOrderService
 import com.zipe.test.base.TestBase
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
