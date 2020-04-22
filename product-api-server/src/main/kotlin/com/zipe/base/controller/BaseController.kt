@@ -3,8 +3,8 @@ package com.zipe.base.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
+//import org.springframework.security.core.context.SecurityContextHolder
+//import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ModelAttribute
 import java.util.*
@@ -31,16 +31,16 @@ abstract class BaseController {
     /**
      * This method returns the principal[user-name] of logged-in user.
      */
-    protected open fun getPrincipal(): String {
-        var userName: String = ""
-        val principal = SecurityContextHolder.getContext().authentication.principal
-        userName = if (principal is UserDetails) {
-            (principal as UserDetails).username
-        } else {
-            principal.toString()
-        }
-        return userName
-    }
+//    protected open fun getPrincipal(): String {
+//        var userName: String = ""
+//        val principal = SecurityContextHolder.getContext().authentication.principal
+//        userName = if (principal is UserDetails) {
+//            (principal as UserDetails).username
+//        } else {
+//            principal.toString()
+//        }
+//        return userName
+//    }
 
     protected open fun getMessage(key: String, vararg args: String): String {
         return if (key.isBlank()) {

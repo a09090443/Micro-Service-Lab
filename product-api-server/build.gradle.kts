@@ -15,7 +15,7 @@ dependencies {
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
+//    implementation("org.springframework.cloud:spring-cloud-starter-oauth2")
 
     implementation("com.zaxxer:HikariCP")
     implementation("org.hibernate:hibernate-ehcache")
