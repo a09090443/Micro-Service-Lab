@@ -1,8 +1,18 @@
 type Query {
-    findAllProducts: [ProductEntity]
+    findAllProducts: [ProductOutput]
 }
 
-type ProductEntity {
+type Mutation {
+    insertProduct(product: ProductInput): ProductOutput
+}
+
+type ProductOutput {
     id: String!
     name: String!
+}
+
+input ProductInput {
+    name: String!
+    price: Int!
+    inventory: Int!
 }

@@ -6,4 +6,6 @@ interface IProductService {
 
     fun findAll(): List<ProductEntity>
 
+    fun insertProduct(productEntity: ProductEntity)
+
 }

@@ -23,4 +23,8 @@ class ProductServiceImpl : IProductService, BaseService() {
         return productRepository.findAll()
     }
 
+    override fun insertProduct(productEntity: ProductEntity) {
+        productRepository.save(productEntity)
+    }
+
 }
