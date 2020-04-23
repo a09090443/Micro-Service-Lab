@@ -2,6 +2,9 @@ package com.zipe.service.impl
 
 import com.zipe.annotation.DBRouting
 import com.zipe.base.service.BaseService
+import com.zipe.config.DynamicDataSourceContextHolder
+import com.zipe.config.DynamicDataSourceContextHolder.clearDataSourceName
+import com.zipe.config.DynamicDataSourceContextHolder.setDataSourceName
 import com.zipe.entity.product.ProductEntity
 import com.zipe.repository.price.IProductRepository
 import com.zipe.service.IProductService
@@ -23,8 +26,14 @@ class ProductServiceImpl : IProductService, BaseService() {
         return productRepository.findAll()
     }
 
-    override fun insertProduct(productEntity: ProductEntity) {
-        productRepository.save(productEntity)
+    //    @DBRouting(DBRouting.SECONDARY_DATASOURCE)
+    override fun insertProduct(productEntity: ProductEntity): String {
+        try {
+            productRepository.save(productEntity)
+        } catch (e: Exception) {
+            throw e
+        }
+        return "Success"
     }
 
 }

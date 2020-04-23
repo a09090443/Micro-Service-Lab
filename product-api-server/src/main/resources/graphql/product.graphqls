@@ -1,12 +1,12 @@
 type Query {
-    findAllProducts: [ProductOutput]
+    findAllProducts: [ProductEntity]
 }
 
 type Mutation {
-    insertProduct(product: ProductInput): ProductOutput
+    insertProduct(product: ProductInput!): String!
 }
 
-type ProductOutput {
+type ProductEntity {
     id: String!
     name: String!
 }
