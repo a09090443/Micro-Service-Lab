@@ -23,9 +23,9 @@ import javax.sql.DataSource
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "systemDbEntityManagerFactory",
-        basePackages = ["com.zipe.repository.system"],
-        transactionManagerRef = "systemDbTransactionManager"
+    entityManagerFactoryRef = "systemDbEntityManagerFactory",
+    basePackages = ["com.zipe.repository.system"],
+    transactionManagerRef = "systemDbTransactionManager"
 )
 class DataSourceSystemConfig : BaseDataSourceConfig() {
 
@@ -62,7 +62,7 @@ class DataSourceSystemConfig : BaseDataSourceConfig() {
 
     @Bean(name = ["systemDbTransactionManager"])
     fun transactionManager(
-            @Qualifier("systemDbEntityManagerFactory") systemDbEntityManagerFactory: EntityManagerFactory?
+        @Qualifier("systemDbEntityManagerFactory") systemDbEntityManagerFactory: EntityManagerFactory?
     ): PlatformTransactionManager? {
         return systemDbEntityManagerFactory?.let { JpaTransactionManager(it) }
     }
