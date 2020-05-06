@@ -4,6 +4,7 @@ import com.zipe.grant.CustomTokenGranter
 import com.zipe.security.service.CustomClientDetailService
 import com.zipe.security.service.UserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
@@ -35,6 +36,8 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices
 import org.springframework.security.oauth2.provider.token.TokenEnhancer
 import org.springframework.security.oauth2.provider.token.TokenStore
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore
 import javax.sql.DataSource
 
@@ -57,6 +60,12 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     @Autowired
     private val connectionFactory: RedisConnectionFactory? = null
 
+    @Value("\${config.oauth2.privateKey}")
+    private val privateKey: String? = null
+
+    @Value("\${config.oauth2.publicKey}")
+    private val publicKey: String? = null
+
     @Bean
     fun jdbcClientDetailsService(): JdbcClientDetailsService {
         val details = JdbcClientDetailsService(dataSource)
@@ -69,12 +78,25 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
         return CustomClientDetailService()
     }
 
+//    @Bean
+//    fun tokenStore(): TokenStore {
+////        return JdbcTokenStore(dataSource)
+//        val redisTokenStore = RedisTokenStore(connectionFactory)
+//        redisTokenStore.setPrefix("auth-token:")
+//        return redisTokenStore
+//    }
+
     @Bean
-    fun tokenStore(): TokenStore {
-//        return JdbcTokenStore(dataSource)
-        val redisTokenStore = RedisTokenStore(connectionFactory)
-        redisTokenStore.setPrefix("auth-token:")
-        return redisTokenStore
+    fun tokenEnhancer(): JwtAccessTokenConverter? {
+        val converter = JwtAccessTokenConverter()
+        converter.setSigningKey(privateKey)
+        converter.setVerifierKey(publicKey)
+        return converter
+    }
+
+    @Bean
+    fun tokenStore(): JwtTokenStore? {
+        return JwtTokenStore(tokenEnhancer())
     }
 
     @Bean
@@ -87,10 +109,10 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
         return JdbcAuthorizationCodeServices(dataSource)
     }
 
-    @Bean
-    fun tokenEnhancer(): TokenEnhancer {
-        return CustomTokenEnhancer()
-    }
+//    @Bean
+//    fun tokenEnhancer(): TokenEnhancer {
+//        return CustomTokenEnhancer()
+//    }
 
     override fun configure(security: AuthorizationServerSecurityConfigurer) {
 //		security.allowFormAuthenticationForClients()
