@@ -1,6 +1,10 @@
 package com.zipe.entity
 
-import javax.persistence.*
+import java.io.Serializable
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 
@@ -16,4 +20,4 @@ data class SysAuthorityEntity(
     @NotNull
     @Column(name = "name", nullable = false, length = 50)
     val name: String = ""
-)
+) : Serializable

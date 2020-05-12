@@ -10,6 +10,7 @@ import com.zipe.utils.log.logger
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -27,6 +28,7 @@ class UserServiceImpl : IUserService {
     @Autowired
     private lateinit var sysUserLogonLogRepository: ISysUserLogonLogRepository
 
+    @Cacheable(cacheNames = ["userCache"])
     override fun findUserByLoginId(loginId: String): SysUserEntity {
         return sysUserRepository.findByLoginId(loginId)
     }

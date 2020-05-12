@@ -1,11 +1,13 @@
 package com.zipe.entity
 
 import org.springframework.format.annotation.DateTimeFormat
+import java.io.Serializable
 import java.time.LocalDateTime
-import java.time.LocalTime
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.Table
 import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "oauth_account")
@@ -35,10 +37,10 @@ data class OauthAccountEntity(
     val authorities: String = "",
 
     @Column(name = "access_token_validity", nullable = true, length = 11)
-    val accessTokenValidity: Int ?= 0,
+    val accessTokenValidity: Int? = 0,
 
     @Column(name = "refresh_token_validity", nullable = true, length = 11)
-    val refreshTokenValidity: Int ?= 0,
+    val refreshTokenValidity: Int? = 0,
 
     @Column(name = "additional_information", nullable = true, length = 4096)
     val additionalInformation: String = "",
@@ -59,4 +61,4 @@ data class OauthAccountEntity(
 
     @Column(name = "create_user", nullable = true, length = 256)
     val createBy: String = ""
-)
+) : Serializable

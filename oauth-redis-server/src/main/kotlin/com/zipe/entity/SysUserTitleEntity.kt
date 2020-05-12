@@ -1,5 +1,6 @@
 package com.zipe.entity
 
+import java.io.Serializable
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -16,4 +17,4 @@ data class SysUserTitleEntity(
 
     @Column(name = "title_name", length = 10)
     val titleName: String = ""
-)
+) : Serializable

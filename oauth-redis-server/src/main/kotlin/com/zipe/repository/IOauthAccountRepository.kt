@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface IOauthAccountRepository : JpaRepository<OauthAccountEntity, Long> {
-
     fun findByClientId(clientId: String?): OauthAccountEntity
-
 }

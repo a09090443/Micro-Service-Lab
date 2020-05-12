@@ -9,11 +9,11 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.cache.RedisCacheWriter
 import org.springframework.data.redis.connection.RedisConnectionFactory
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
 import java.time.Duration
+
 
 @Configuration
 @EnableCaching
@@ -30,13 +30,20 @@ class RedisConfig : CachingConfigurerSupport() {
         return redisTemplate
     }
 
+    @Bean
     fun cacheManager(factory: RedisConnectionFactory): CacheManager {
 
         val pair = RedisSerializationContext.SerializationPair.fromSerializer(GenericJackson2JsonRedisSerializer())
         val defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(
             Duration.ofHours(1)
         )
+
+        val initialCacheConfiguration = mapOf<String, RedisCacheConfiguration?>(
+            "demoCache" to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(1)),
+            "userCache" to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5))
+        )
+
         return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(factory))
-            .cacheDefaults(defaultCacheConfig).build()
+            .cacheDefaults(defaultCacheConfig).withInitialCacheConfigurations(initialCacheConfiguration).build()
     }
 }

@@ -1,6 +1,7 @@
 package com.zipe.entity
 
 import org.springframework.format.annotation.DateTimeFormat
+import java.io.Serializable
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.Email
@@ -93,4 +94,4 @@ data class SysUserEntity(
     )
     var sysUserTitle: Set<SysUserTitleEntity> = mutableSetOf()
 
-)
+) : Serializable

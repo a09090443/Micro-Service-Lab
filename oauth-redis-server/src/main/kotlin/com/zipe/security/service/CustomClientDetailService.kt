@@ -1,7 +1,6 @@
 package com.zipe.security.service
 
 import com.zipe.repository.IOauthAccountRepository
-import com.zipe.repository.ISysUserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.oauth2.provider.ClientDetails
 import org.springframework.security.oauth2.provider.ClientDetailsService
@@ -15,18 +14,19 @@ class CustomClientDetailService : ClientDetailsService {
     override fun loadClientByClientId(clientId: String?): ClientDetails {
         return oauthAccountRepository.findByClientId(clientId).run {
 
-            val resourceIds = this.resourceIds
-            val scopes = this.scope
-            val grantTypes = this.authorizedGrantTypes
-            val authorities = this.authorities
-
-            val clientDetails = BaseClientDetails(this.clientId, resourceIds, scopes, grantTypes, authorities).also {
+            val clientDetails = BaseClientDetails(
+                this.clientId,
+                this.resourceIds,
+                this.scope,
+                this.authorizedGrantTypes,
+                this.authorities
+            ).also {
                 it.clientId = this.clientId
                 it.clientSecret = this.clientSecret
                 it.accessTokenValiditySeconds = this.accessTokenValidity
                 it.refreshTokenValiditySeconds = this.refreshTokenValidity
                 it.registeredRedirectUri = this.webServerRedirectUri.split(",").toSet()
-    //                it.autoApproveScopes = this.scope?.toSet()
+                //                it.autoApproveScopes = this.scope?.toSet()
             }
             clientDetails.clientId = this.clientId
 
