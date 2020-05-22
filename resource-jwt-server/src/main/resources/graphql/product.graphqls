@@ -1,0 +1,18 @@
+type Query {
+    findAllProducts: [Product]
+}
+
+type Mutation {
+    insertProduct(product: ProductInput!): String!
+}
+
+type Product {
+    id: String!
+    name: String!
+}
+
+input ProductInput {
+    name: String!
+    price: Int!
+    inventory: Int!
+}

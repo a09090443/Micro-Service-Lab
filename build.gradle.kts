@@ -18,6 +18,7 @@ extra["swaggerVersion"] = "2.9.2"
 extra["log4jdbcVersion"] = "1.2"
 extra["graphqlJavaVersion"] = "5.2.4"
 extra["graphqlVersion"] = "5.0.2"
+extra["commonIoVersion"] = "2.6"
 
 allprojects {
     group = "com.zipe"

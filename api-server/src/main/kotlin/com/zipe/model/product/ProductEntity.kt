@@ -1,10 +1,8 @@
-package com.zipe.entity.product
+package com.zipe.model.product
 
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
 import javax.persistence.*
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "product")

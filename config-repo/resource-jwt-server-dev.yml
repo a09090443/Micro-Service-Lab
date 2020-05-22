@@ -21,33 +21,12 @@ spring:
     throw-exception-if-no-handler-found: true
   datasource:
 
-    system:
-      type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev?characterEncoding=UTF-8
-      username: dev
-      password: 1qaz@WSX
-      driver-class-name: com.mysql.cj.jdbc.Driver
-
     product:
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/db1?characterEncoding=UTF-8
+      jdbc-url: jdbc:log4jdbc:mysql://192.168.1.151:3306/db1?characterEncoding=UTF-8
       username: dev
       password: 1qaz@WSX
-      driver-class-name: com.mysql.cj.jdbc.Driver
-
-    primary:
-      type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/db3?characterEncoding=UTF-8
-      username: dev
-      password: 1qaz@WSX
-      driver-class-name: com.mysql.cj.jdbc.Driver
-
-    secondary:
-      type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/db4?characterEncoding=UTF-8
-      username: dev
-      password: 1qaz@WSX
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: net.sf.log4jdbc.DriverSpy
 
     hikari:
       minimumIdle: 5

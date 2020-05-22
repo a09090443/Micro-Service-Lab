@@ -1,1 +1,32 @@
-spring.application.name: resource-jwt-server
+spring:
+  application:
+    name: resource-jwt-server
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  mvc:
+    locale: zh_TW
+  messages:
+    basename: i18n.messages
+    cache-duration: 1
+    encoding: UTF-8
+  cloud:
+    config:
+      profile: dev
+      uri: http://127.0.0.1:8000
+#      label: develop
+
+security:
+  jwt:
+    public-key: classpath:jwt/public.txt
+
+# Management
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+server:
+  port: 8080
