@@ -32,10 +32,7 @@ import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGrante
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter
 import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices
-import org.springframework.security.oauth2.provider.token.TokenEnhancer
-import org.springframework.security.oauth2.provider.token.TokenStore
+import org.springframework.security.oauth2.provider.token.*
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore
@@ -95,6 +92,9 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     }
 
     @Bean
+    fun customTokenEnhancer() = CustomTokenEnhancer()
+
+    @Bean
     fun tokenStore(): JwtTokenStore? {
         return JwtTokenStore(tokenEnhancer())
     }
@@ -127,13 +127,13 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     }
 
     override fun configure(endpoints: AuthorizationServerEndpointsConfigurer) {
-        endpoints
+        endpoints.tokenServices(tokenServices())
             .approvalStore(approvalStore())
             .authenticationManager(authenticationManager)
             .userDetailsService(userDetailsService)
             .authorizationCodeServices(authorizationCodeServices())
-            .tokenEnhancer(tokenEnhancer())
-            .tokenStore(tokenStore())
+//            .tokenEnhancer(tokenEnhancer())
+//            .tokenStore(tokenStore())
             .tokenGranter(tokenGranter())
     }
 
@@ -144,12 +144,15 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     @Bean
     @Primary
     fun tokenServices(): AuthorizationServerTokenServices {
-
+        //      将增强的token设置到增强链中
+        val enhancerChain = TokenEnhancerChain().apply {
+            this.setTokenEnhancers(listOf(CustomTokenEnhancer(), tokenEnhancer()))
+        }
         return DefaultTokenServices().apply {
             this.setSupportRefreshToken(true)
             this.setTokenStore(tokenStore())
 //            this.setClientDetailsService(customClientDetailService())
-            this.setTokenEnhancer(tokenEnhancer())
+            this.setTokenEnhancer(enhancerChain)
         }
     }
 

@@ -17,7 +17,7 @@ class CustomTokenEnhancer : TokenEnhancer {
             token.refreshToken?.let {
                 DefaultOAuth2RefreshToken(getNewToken())
             }
-
+            token.expiration = Date(System.currentTimeMillis() + 600000) // 10 minute
             authentication?.let {
                 token.additionalInformation = mapOf("client_id" to authentication.oAuth2Request.clientId)
             }
