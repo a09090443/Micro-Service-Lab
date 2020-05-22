@@ -12,12 +12,8 @@ class CustomTokenEnhancer : TokenEnhancer {
         if (accessToken is DefaultOAuth2AccessToken) {
 
             val token: DefaultOAuth2AccessToken = accessToken
-            token.value = getNewToken()
-
-            token.refreshToken?.let {
-                DefaultOAuth2RefreshToken(getNewToken())
-            }
             token.expiration = Date(System.currentTimeMillis() + 600000) // 10 minute
+
             authentication?.let {
                 token.additionalInformation = mapOf("client_id" to authentication.oAuth2Request.clientId)
             }
@@ -28,7 +24,4 @@ class CustomTokenEnhancer : TokenEnhancer {
         return accessToken
     }
 
-    private fun getNewToken(): String {
-        return UUID.randomUUID().toString().replace("-", "")
-    }
 }

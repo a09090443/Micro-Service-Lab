@@ -1,4 +1,4 @@
-package ch.keepcalm.demo.oauth2.app
+package com.zipe.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

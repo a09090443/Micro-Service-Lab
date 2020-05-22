@@ -25,7 +25,7 @@ class CustomClientDetailService : ClientDetailsService {
                 it.clientSecret = this.clientSecret
                 it.accessTokenValiditySeconds = this.accessTokenValidity
                 it.refreshTokenValiditySeconds = this.refreshTokenValidity
-                it.registeredRedirectUri = this.webServerRedirectUri.split(",").toSet()
+                it.registeredRedirectUri = this.webServerRedirectUri?.split(",")?.toSet()
                 //                it.autoApproveScopes = this.scope?.toSet()
             }
             clientDetails.clientId = this.clientId

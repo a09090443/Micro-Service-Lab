@@ -1,4 +1,4 @@
-package ch.keepcalm.demo.oauth2.app
+package com.zipe.config
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 

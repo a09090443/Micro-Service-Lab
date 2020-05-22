@@ -32,10 +32,11 @@ import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGrante
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter
 import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory
-import org.springframework.security.oauth2.provider.token.*
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore
 import javax.sql.DataSource
 
 @Configuration
@@ -92,9 +93,6 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     }
 
     @Bean
-    fun customTokenEnhancer() = CustomTokenEnhancer()
-
-    @Bean
     fun tokenStore(): JwtTokenStore? {
         return JwtTokenStore(tokenEnhancer())
     }
@@ -108,11 +106,6 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     fun authorizationCodeServices(): AuthorizationCodeServices {
         return JdbcAuthorizationCodeServices(dataSource)
     }
-
-//    @Bean
-//    fun tokenEnhancer(): TokenEnhancer {
-//        return CustomTokenEnhancer()
-//    }
 
     override fun configure(security: AuthorizationServerSecurityConfigurer) {
 //		security.allowFormAuthenticationForClients()

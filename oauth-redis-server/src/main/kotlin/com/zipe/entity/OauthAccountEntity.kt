@@ -31,7 +31,7 @@ data class OauthAccountEntity(
     val authorizedGrantTypes: String = "",
 
     @Column(name = "web_server_redirect_uri", nullable = true, length = 256)
-    val webServerRedirectUri: String = "",
+    val webServerRedirectUri: String? = "",
 
     @Column(name = "authorities", nullable = true, length = 256)
     val authorities: String = "",
