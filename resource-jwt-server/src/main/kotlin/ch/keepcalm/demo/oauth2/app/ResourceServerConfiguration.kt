@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets.UTF_8
 @EnableConfigurationProperties(SecurityProperties::class)
 class ResourceServerConfiguration(private val securityProperties: SecurityProperties) : ResourceServerConfigurerAdapter() {
 
-    private val ROOT_PATTERN = "/**"
+    private val ROOT_PATTERN = "/api/**"
 
 
     @Throws(Exception::class)
