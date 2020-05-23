@@ -3,15 +3,10 @@ type Query {
 }
 
 type Mutation {
-    insertProduct(product: ProductInput!): String!
+    insertProduct(product: Product!): String!
 }
 
 type Product {
-    id: String!
-    name: String!
-}
-
-input ProductInput {
     name: String!
     price: Int!
     inventory: Int!
