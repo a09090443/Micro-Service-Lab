@@ -15,5 +15,5 @@ class ProductController {
     private lateinit var productService: ProductServiceImpl
 
     @GetMapping(value = ["/all"])
-    fun getAllProducts() = productService.findAllProducts()
+    fun getProducts(page: Int, limit: Int) = productService.findProducts(page, limit)
 }

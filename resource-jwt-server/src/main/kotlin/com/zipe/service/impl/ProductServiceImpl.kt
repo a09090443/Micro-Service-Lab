@@ -5,6 +5,7 @@ import com.zipe.model.product.entity.Product
 import com.zipe.repository.product.IProductRepository
 import com.zipe.service.IProductService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,7 +15,9 @@ class ProductServiceImpl : IProductService, BaseService() {
     private lateinit var productRepository: IProductRepository
 
     @Transactional(readOnly = true)
-    override fun findAllProducts(): List<Product> = productRepository.findAll()
+    override fun findProducts(page: Int, limit: Int): List<Product> {
+        return productRepository.findAll(PageRequest.of(page, limit)).content.toList()
+    }
 
     @Transactional
     override fun insertProduct(product: Product) {

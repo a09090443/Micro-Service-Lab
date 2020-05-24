@@ -1,7 +1,5 @@
 package com.zipe.model.product.output
 
-import java.time.LocalDateTime
-
 data class ProductOutput(
 
     var name: String = "",

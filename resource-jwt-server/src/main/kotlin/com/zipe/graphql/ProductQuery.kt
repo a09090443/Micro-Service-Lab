@@ -14,7 +14,8 @@ class ProductQuery : GraphQLQueryResolver {
     @Autowired
     private lateinit var productService: ProductServiceImpl
 
-    fun findAllProducts(): List<ProductOutput> =
-        productService.findAllProducts().map { ProductOutput().apply { BeanUtils.copyProperties(it, this) } }.toList()
+    fun findAllProducts(page: Int, limit: Int): List<ProductOutput> =
+        productService.findProducts(page, limit).map { ProductOutput().apply { BeanUtils.copyProperties(it, this) } }
+            .toList()
 }
 

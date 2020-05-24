@@ -1,12 +1,18 @@
 type Query {
-    findAllProducts: [Product]
+    findAllProducts(page:Int, limit:Int): [Product]
 }
 
 type Mutation {
-    insertProduct(product: Product!): String!
+    insertProduct(input: ProductInput): String!
 }
 
 type Product {
+    name: String!
+    price: Int!
+    inventory: Int!
+}
+
+input ProductInput {
     name: String!
     price: Int!
     inventory: Int!
