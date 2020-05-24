@@ -1,9 +1,0 @@
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArzGoBmGYOlo5RLxsUa6l
-EfezolXpDnuLbTTAF097UHRjz8Uahrnp1ijh8q/0E6RnHVm49dwaNcPWWq2nusy3
-qihOa3jjqikTA6R+Ct9M9pYfxu3EgSGmpSucrMYrIoAf96kRC+G0q9EnzLIygZvK
-WXtfz3kR5OuhxCTv9b+efUhTvPp7hp5sJgmiDPC3VeJY51hqjZgz941wOtKaqu33
-eIENfBNPl/p2vkCSwzcQ/UdmbxWQlbz+/gdJlCbdhm2jvwA+cxKoL5FMFyTKyffr
-clHpb2yXMN8qV7PkOAYPpWwdzfrAP4Ot0ROyxkltcl9Laf6Nshw42/4328crdKZQ
-8QIDAQAB
------END PUBLIC KEY-----
