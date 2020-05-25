@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.zipe.model.product.entity.Product
 import com.zipe.model.product.input.ProductInput
 import com.zipe.service.impl.ProductServiceImpl
+import com.zipe.util.UserInfoUtil
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -21,8 +22,8 @@ class ProductMutation : GraphQLMutationResolver {
             val now = LocalDateTime.now()
             this.createTime = now
             this.updateTime = now
-            this.createBy = "zipe"
-            this.updateBy = "zipe"
+            this.createBy = UserInfoUtil().getUserInfo().name
+            this.updateBy = UserInfoUtil().getUserInfo().name
         }
         productService.insertProduct(product)
         return "Success"

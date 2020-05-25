@@ -1,7 +1,6 @@
 package com.zipe.config
 
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken
-import org.springframework.security.oauth2.common.DefaultOAuth2RefreshToken
 import org.springframework.security.oauth2.common.OAuth2AccessToken
 import org.springframework.security.oauth2.provider.OAuth2Authentication
 import org.springframework.security.oauth2.provider.token.TokenEnhancer
@@ -12,7 +11,7 @@ class CustomTokenEnhancer : TokenEnhancer {
         if (accessToken is DefaultOAuth2AccessToken) {
 
             val token: DefaultOAuth2AccessToken = accessToken
-            token.expiration = Date(System.currentTimeMillis() + 600000) // 10 minute
+            token.expiration = Date(System.currentTimeMillis() + 86400000) // 1 day
 
             authentication?.let {
                 token.additionalInformation = mapOf("client_id" to authentication.oAuth2Request.clientId)
