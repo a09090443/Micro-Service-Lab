@@ -1,6 +1,9 @@
-package com.zipe.model.product.input
+package com.zipe.model.input
 
+import com.zipe.model.entity.Game
 import java.time.LocalDateTime
+import javax.persistence.JoinColumn
+import javax.persistence.OneToMany
 
 data class ProductInput(
 

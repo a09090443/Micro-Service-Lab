@@ -1,12 +1,14 @@
-package com.zipe.model.product.output
+package com.zipe.model.output
 
-data class ProductOutput(
+data class GameOutput(
 
     var name: String = "",
 
+    var year: String = "",
+
     var price: Long = 0,
 
-    var inventory: Long = 0,
+    var productId: Long = 0,
 
     var updateTime: String = "",
 

@@ -1,4 +1,4 @@
-package com.zipe.model.product.entity
+package com.zipe.model.entity
 
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
@@ -33,5 +33,9 @@ data class Product(
     var createTime: LocalDateTime = LocalDateTime.now(),
 
     @Column(name = "create_user", nullable = true, length = 256)
-    var createBy: String = ""
+    var createBy: String = "",
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id") // 指到關聯資料表Book的外鍵欄位名稱
+    var game: Set<Game> = setOf()
 )

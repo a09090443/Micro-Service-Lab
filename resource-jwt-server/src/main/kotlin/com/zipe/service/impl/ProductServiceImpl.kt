@@ -1,8 +1,8 @@
 package com.zipe.service.impl
 
 import com.zipe.base.service.BaseService
-import com.zipe.model.product.entity.Product
-import com.zipe.repository.product.IProductRepository
+import com.zipe.model.entity.Product
+import com.zipe.repository.IProductRepository
 import com.zipe.service.IProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest

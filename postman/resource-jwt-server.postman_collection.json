@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "47d330e7-dbce-4ab0-838e-39158bcbf11d",
+		"name": "resource-jwt-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllproducts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MDE1OTQzMiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiIxMjQ4YjE1Ny00NzUwLTQ5OTYtOGFlMy0xMzM5YjIzOTcyNTkiLCJjbGllbnRfaWQiOiJwYXNzd29yZF90ZXN0In0.RxL6UfQwg0Uy_rZuEj2WHWW-7iBjHFW6tA7z3TBUhaSn6Q9XYsbqL8V4W4uzy1VDrnUxY5YJGh1l_im3e0po2q6IekeCEhVp8gM2jMVMvk-Z7fDvqYReS-Sak-aIdLoK0cwT2NdnWOLTBfEcvkFZ9ux_BSpqlR2gMdiKDlHLkDo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{resource-jwt-host}}/product/all",
+					"host": [
+						"{{resource-jwt-host}}"
+					],
+					"path": [
+						"product",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllproducts_Graphql",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MDE1OTQzMiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiIxMjQ4YjE1Ny00NzUwLTQ5OTYtOGFlMy0xMzM5YjIzOTcyNTkiLCJjbGllbnRfaWQiOiJwYXNzd29yZF90ZXN0In0.RxL6UfQwg0Uy_rZuEj2WHWW-7iBjHFW6tA7z3TBUhaSn6Q9XYsbqL8V4W4uzy1VDrnUxY5YJGh1l_im3e0po2q6IekeCEhVp8gM2jMVMvk-Z7fDvqYReS-Sak-aIdLoK0cwT2NdnWOLTBfEcvkFZ9ux_BSpqlR2gMdiKDlHLkDo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  findAllProducts {\n    id\n    name\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{resource-jwt-host}}/graphql",
+					"host": [
+						"{{resource-jwt-host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insertproduct_Graphql",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MDE2MzM2MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI0NmFjZjMyMS0wMDQ2LTRhNjAtYTJmYy0wM2VlYWEwMzY3NTgiLCJjbGllbnRfaWQiOiJwYXNzd29yZF90ZXN0In0.ZzN-oUkYmRdDnQ_EmyH8O_UB55ljKGy6YjxeeKu4S1rV91y4kPf4AH8W9Hn_olp3I-ZxhWUUNQknFfNQA2AM8ci9KaBISvTkXeXc_NVWsqAcbtabtd_392UgjyP4KqKO6MLf3ZHIRxpkEEba2dTP0SgaXbCju3q1Uc0g5D0ibNM"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  insertProduct(product: {name: \"ps2\", price: 100, inventory: 50})\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{resource-jwt-host}}/graphql",
+					"host": [
+						"{{resource-jwt-host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -23,7 +23,7 @@ import javax.sql.DataSource
 @EnableTransactionManagement
 @EnableJpaRepositories(
     entityManagerFactoryRef = "productDbEntityManagerFactory",
-    basePackages = ["com.zipe.repository.product"],
+    basePackages = ["com.zipe.repository"],
     transactionManagerRef = "productDbTransactionManager"
 )
 class DataSourceProductConfig : BaseDataSourceConfig() {
@@ -53,7 +53,7 @@ class DataSourceProductConfig : BaseDataSourceConfig() {
 
         val factory = LocalContainerEntityManagerFactoryBean()
         factory.jpaVendorAdapter = vendorAdapter
-        factory.setPackagesToScan("com.zipe.model.product")
+        factory.setPackagesToScan("com.zipe.model")
 
         factory.setJpaPropertyMap(hibernateConfig())
 

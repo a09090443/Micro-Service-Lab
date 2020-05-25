@@ -1,8 +1,8 @@
 package com.zipe.graphql
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
-import com.zipe.model.product.entity.Product
-import com.zipe.model.product.input.ProductInput
+import com.zipe.model.entity.Product
+import com.zipe.model.input.ProductInput
 import com.zipe.service.impl.ProductServiceImpl
 import com.zipe.util.UserInfoUtil
 import org.springframework.beans.BeanUtils

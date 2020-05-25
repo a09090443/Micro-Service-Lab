@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "ef2082bb-f465-4009-b1b5-52c7fbb614df",
+		"name": "Oauth",
+		"description": "Get token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "oauth-token-client-type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-host}}/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret",
+					"host": [
+						"{{auth-host}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "client_id",
+							"value": "client_test"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth-token-implicit-type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-host}}/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret",
+					"host": [
+						"{{auth-host}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "client_id",
+							"value": "client_test"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth-token-password-type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-host}}/oauth/token?grant_type=password&username=admin&password=admin&client_id=password_test&client_secret=secret",
+					"host": [
+						"{{auth-host}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						},
+						{
+							"key": "client_id",
+							"value": "password_test"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
