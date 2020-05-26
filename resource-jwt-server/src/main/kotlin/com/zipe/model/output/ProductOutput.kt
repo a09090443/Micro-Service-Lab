@@ -16,5 +16,7 @@ data class ProductOutput(
 
     var createBy: String = "",
 
-    var games: Set<GameOutput> = setOf()
-)
+    var games: List<GameOutput> = listOf()
+) {
+    fun games(name: String = ""): List<GameOutput> = games.filter { it.name == name }.toList()
+}

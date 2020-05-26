@@ -10,7 +10,7 @@ type Product {
     name: String!
     price: Int!
     inventory: Int!
-    games(page:Int, limit:Int): [Game]
+    games(name:String): [Game]
 }
 
 type Game {

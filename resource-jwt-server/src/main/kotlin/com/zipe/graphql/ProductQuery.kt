@@ -4,7 +4,6 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver
 import com.zipe.model.entity.asProductOutput
 import com.zipe.model.output.ProductOutput
 import com.zipe.service.impl.ProductServiceImpl
-import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

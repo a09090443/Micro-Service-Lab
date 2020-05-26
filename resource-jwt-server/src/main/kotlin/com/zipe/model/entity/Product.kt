@@ -3,7 +3,6 @@ package com.zipe.model.entity
 import com.alibaba.fastjson.JSON
 import com.zipe.model.output.GameOutput
 import com.zipe.model.output.ProductOutput
-import org.codehaus.jackson.map.util.BeanUtil
 import org.springframework.beans.BeanUtils
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
@@ -42,10 +41,10 @@ data class Product(
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id") // 指到關聯資料表Book的外鍵欄位名稱
-    var game: Set<Game> = setOf()
+    var games: List<Game> = listOf()
 )
 
 fun Product.asProductOutput() = ProductOutput().apply {
     BeanUtils.copyProperties(this@asProductOutput, this)
-    this.games = JSON.parseArray(JSON.toJSONString(this@asProductOutput.game), GameOutput::class.java).toSet()
+    this.games = JSON.parseArray(JSON.toJSONString(this@asProductOutput.games), GameOutput::class.java).toList()
 }
