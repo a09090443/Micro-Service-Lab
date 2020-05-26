@@ -1,6 +1,7 @@
 package com.zipe.model.entity
 
 import org.springframework.format.annotation.DateTimeFormat
+import java.io.Serializable
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -37,4 +38,4 @@ data class Game(
 
     @Column(name = "create_user", nullable = true, length = 256)
     var createBy: String = ""
-)
+) : Serializable

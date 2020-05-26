@@ -31,5 +31,6 @@ dependencies {
     implementation("com.graphql-java:graphql-spring-boot-starter:${property("graphqlVersion")}")
     implementation("com.graphql-java:graphiql-spring-boot-starter:${property("graphqlVersion")}")
     implementation("com.graphql-java:graphql-java-tools:${property("graphqlJavaVersion")}")
+    implementation("com.alibaba:fastjson:1.2.68")
     implementation(project(":utility"))
 }
