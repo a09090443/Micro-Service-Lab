@@ -18,5 +18,5 @@ data class ProductOutput(
 
     var games: List<GameOutput> = listOf()
 ) {
-    fun games(name: String?): List<GameOutput> = games.filter { (name.isNullOrBlank() || name == this.name) }.toList()
+    fun games(name: String?): List<GameOutput> = games.filter { name.isNullOrBlank() || name == it.name }.toList()
 }

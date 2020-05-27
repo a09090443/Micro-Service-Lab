@@ -111,3 +111,17 @@ VALUES('sso_service', 'oauth2-resource', 'secret', 'read,write', 'authorization_
 INSERT INTO oauth_client_details
 (client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
 VALUES('zuul_service', 'oauth2-resource', 'secret', 'read,write', 'authorization_code,implicit', NULL, NULL, NULL, NULL, NULL, 'true');
+
+INSERT INTO game
+(name, `year`, price, product_id, create_time, create_user, update_time, update_user)
+VALUES('惡靈古堡4', '2005', 1000, 3, NULL, NULL, NULL, NULL);
+INSERT INTO db1.game
+(name, `year`, price, product_id, create_time, create_user, update_time, update_user)
+VALUES('戰神II', '2007', 1000, 3, NULL, NULL, NULL, NULL);
+
+INSERT INTO product
+(name, price, inventory, create_time, create_user, update_time, update_user)
+VALUES('ps', 100, 5, '2020-05-25 14:13:21.000', 'zipe', '2020-05-25 14:13:21.000', 'zipe');
+INSERT INTO product
+(name, price, inventory, create_time, create_user, update_time, update_user)
+VALUES('ps2', 500, 10, '2020-05-25 14:13:43.000', 'zipe', '2020-05-25 14:13:43.000', 'zipe');

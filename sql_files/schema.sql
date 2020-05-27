@@ -169,9 +169,23 @@ CREATE TABLE `sys_user_logon_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 
-CREATE TABLE `product` (
+CREATE TABLE `game` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `year` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` int(10) unsigned DEFAULT NULL,
+  `product_id` int(20) unsigned DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `product` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` int(10) unsigned DEFAULT NULL,
   `inventory` bigint(20) unsigned DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
@@ -179,4 +193,4 @@ CREATE TABLE `product` (
   `update_time` datetime DEFAULT NULL,
   `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
