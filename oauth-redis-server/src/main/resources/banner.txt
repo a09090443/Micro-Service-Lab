@@ -1,7 +1,8 @@
- ___ ___  ____     __  ____    ___           _____   ___  ____   __ __  ____     __    ___         _       ____  ____
-|   T   Tl    j   /  ]|    \  /   \         / ___/  /  _]|    \ |  T  |l    j   /  ]  /  _]       | T     /    T|    \
-| _   _ | |  T   /  / |  D  )Y     Y _____ (   \_  /  [_ |  D  )|  |  | |  T   /  /  /  [_  _____ | |    Y  o  ||  o  )
-|  \_/  | |  |  /  /  |    / |  O  ||     | \__  TY    _]|    / |  |  | |  |  /  /  Y    _]|     || l___ |     ||     T
-|   |   | |  | /   \_ |    \ |     |l_____j /  \ ||   [_ |    \ l  :  ! |  | /   \_ |   [_ l_____j|     T|  _  ||  O  |
-|   |   | j  l \     ||  .  Yl     !        \    ||     T|  .  Y \   /  j  l \     ||     T       |     ||  |  ||     |
-l___j___j|____j \____jl__j\_j \___/          \___jl_____jl__j\_j  \_/  |____j \____jl_____j       l_____jl__j__jl_____j
+${AnsiColor.GREEN}
+${AnsiColor.GREEN}   ___              _   _       ____          _ _       ____
+${AnsiColor.GREEN}  / _ \  __ _ _   _| |_| |__   |  _ \ ___  __| (_)___  / ___|  ___ _ ____   _____ _ __
+${AnsiColor.GREEN} | | | |/ _` | | | | __| '_ \  | |_) / _ \/ _` | / __| \___ \ / _ \ '__\ \ / / _ \ '__|
+${AnsiColor.GREEN} | |_| | (_| | |_| | |_| | | | |  _ <  __/ (_| | \__ \  ___) |  __/ |   \ V /  __/ |
+${AnsiColor.GREEN}  \___/ \__,_|\__,_|\__|_| |_| |_| \_\___|\__,_|_|___/ |____/ \___|_|    \_/ \___|_|
+${AnsiColor.GREEN}
+${AnsiColor.BRIGHT_GREEN}:: ${spring.application.name}:${application.formatted-version} :: Running Spring Boot:${spring-boot.formatted-version} :: Active Profiles: ${spring.profiles.active:${spring.profiles.default:default}} :: Host: ${spring.cloud.client.hostname}
