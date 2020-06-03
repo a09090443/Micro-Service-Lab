@@ -1,8 +1,11 @@
 package com.zipe.config
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.CacheManager
 import org.springframework.cache.annotation.CachingConfigurerSupport
 import org.springframework.cache.annotation.EnableCaching
+import org.springframework.cache.support.NoOpCacheManager
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.cache.RedisCacheConfiguration
@@ -16,11 +19,11 @@ import java.time.Duration
 
 
 @Configuration
+@EnableConfigurationProperties(CacheProperties::class)
 @EnableCaching
 class RedisConfig : CachingConfigurerSupport() {
-
-//    @Bean
-//    fun redisConnectionFactory(): JedisConnectionFactory = JedisConnectionFactory()
+    @Autowired
+    lateinit var cacheProperties: CacheProperties
 
     @Bean
     fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, String> {
@@ -33,17 +36,22 @@ class RedisConfig : CachingConfigurerSupport() {
     @Bean
     fun cacheManager(factory: RedisConnectionFactory): CacheManager {
 
-        val pair = RedisSerializationContext.SerializationPair.fromSerializer(GenericJackson2JsonRedisSerializer())
-        val defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(
-            Duration.ofHours(1)
-        )
+        if (cacheProperties.enable) {
+            val pair = RedisSerializationContext.SerializationPair.fromSerializer(GenericJackson2JsonRedisSerializer())
+            val defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(
+                Duration.ofHours(1)
+            )
 
-        val initialCacheConfiguration = mapOf<String, RedisCacheConfiguration?>(
-            "demoCache" to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(1)),
-            "userCache" to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5))
-        )
+            val initialCacheConfiguration = cacheProperties.key.map { (k, v) ->
+                k to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.parse(v))
+            }.toMap()
 
-        return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(factory))
-            .cacheDefaults(defaultCacheConfig).withInitialCacheConfigurations(initialCacheConfiguration).build()
+            return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(factory))
+                .cacheDefaults(defaultCacheConfig).withInitialCacheConfigurations(initialCacheConfiguration).build()
+        } else {
+            return NoOpCacheManager()
+        }
+
     }
+
 }

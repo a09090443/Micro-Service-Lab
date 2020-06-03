@@ -75,3 +75,10 @@ config:
       /myh1zM6m8cbL5cYFPyP099thbVxzJkjHWqywvQih/qOOjliomKbM9pxG8Z1dB26
       hL9dSAZuA8xExjlPmQIDAQAB
       -----END PUBLIC KEY-----
+
+application:
+  cache:
+    enable: true
+    key:
+      demoCache: PT5M
+      userCache: PT5M
