@@ -19,7 +19,6 @@ extra["log4jdbcVersion"] = "1.2"
 extra["graphqlJavaVersion"] = "5.2.4"
 extra["graphqlVersion"] = "5.0.2"
 extra["commonIoVersion"] = "2.6"
-extra["lombokVersion"] = "1.18.12"
 
 allprojects {
     group = "com.zipe"
@@ -59,7 +58,6 @@ subprojects {
         "implementation"("org.springframework.boot:spring-boot-starter-actuator")
         "implementation"("org.springframework.boot:spring-boot-devtools")
         "implementation"("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-        "implementation"("org.projectlombok:lombok:${property("lombokVersion")}")
 
         "testImplementation"("org.springframework.boot:spring-boot-starter-test")
         "testImplementation"("org.junit.jupiter:junit-jupiter-api")
