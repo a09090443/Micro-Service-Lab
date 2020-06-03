@@ -14,7 +14,7 @@ spring:
 #    driver-class-name: com.mysql.jdbc.Driver
     primary:
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:mysql://192.168.1.151:3306/dev?characterEncoding=UTF-8
+      jdbc-url: jdbc:mysql://192.168.1.150:3306/dev?characterEncoding=UTF-8
       username: dev
       password: 1qaz@WSX
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -36,7 +36,7 @@ spring:
       connectionTestQuery: SELECT 1
 
   redis:
-    host: 192.168.1.151
+    host: 192.168.1.150
     port: 6379
     database: 0
     password:
