@@ -32,7 +32,7 @@ dependencies {
     api("com.graphql-java:graphql-spring-boot-starter:${property("graphqlVersion")}")
     api("com.graphql-java:graphiql-spring-boot-starter:${property("graphqlVersion")}")
     api("com.graphql-java:graphql-java-tools:${property("graphqlJavaVersion")}")
-    api("com.alibaba:fastjson:1.2.68")
+    api("com.alibaba:fastjson:${property("fastjsonVersion")}")
 
     api("com.zaxxer:HikariCP")
     api("org.hibernate:hibernate-ehcache")
@@ -50,17 +50,4 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-}
-
-/**
- * org.springframework.boot:spring-boot-gradle-plugin
- * because above module which is enabled on BootJar task
- */
-tasks {
-//    withType<BootJar> {
-//        enabled = false
-//    }
-    withType<Jar> {
-        enabled = true
-    }
 }

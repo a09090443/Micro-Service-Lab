@@ -19,6 +19,7 @@ extra["log4jdbcVersion"] = "1.2"
 extra["graphqlJavaVersion"] = "5.2.4"
 extra["graphqlVersion"] = "5.0.2"
 extra["commonIoVersion"] = "2.6"
+extra["fastjsonVersion"] = "1.2.68"
 
 allprojects {
     group = "com.zipe"
@@ -49,19 +50,8 @@ subprojects {
         }
     }
 
-    dependencies {
-//        "implementation"(project(":utility")) {
-//            exclude(module = "springframework")
-//        }
-//        "implementation"(kotlin("stdlib-jdk8"))
-//        "implementation"("com.fasterxml.jackson.module:jackson-module-kotlin")
-//        "implementation"("org.springframework.boot:spring-boot-starter-actuator")
-//        "implementation"("org.springframework.boot:spring-boot-devtools")
-//        "implementation"("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-
-        "testImplementation"("org.springframework.boot:spring-boot-starter-test")
-        "testImplementation"("org.junit.jupiter:junit-jupiter-api")
-        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
+    tasks.withType<Jar> {
+        enabled = true
     }
 
     tasks.withType<KotlinCompile>().configureEach {
@@ -78,16 +68,9 @@ subprojects {
 
 }
 
-//project(":oauth-server") {
-//    dependencies {
-//        "implementation"(project(":utility"))
-//    }
-//}
-
 dependencies {
     // Make the root project archives configuration depend on every subproject
     subprojects.forEach {
         archives(it)
     }
 }
-

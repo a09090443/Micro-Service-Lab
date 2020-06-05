@@ -1,4 +1,5 @@
 rootProject.name = "Micro-Service-Lab"
+include("core")
 include("config-server")
 include("oauth-server")
 include("api-server")
@@ -8,4 +9,3 @@ include("oauth-redis-server")
 include("product-api-server")
 include("resource-jwt-server")
 include("eureka-server")
-include("core")
