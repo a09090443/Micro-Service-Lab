@@ -1,5 +1,6 @@
 package com.zipe.config
 
+import com.zipe.model.CacheProperties
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.CacheManager

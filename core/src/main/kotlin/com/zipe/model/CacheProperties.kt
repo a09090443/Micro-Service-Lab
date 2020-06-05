@@ -1,4 +1,4 @@
-package com.zipe.config
+package com.zipe.model
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
