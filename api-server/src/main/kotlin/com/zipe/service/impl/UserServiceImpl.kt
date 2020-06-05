@@ -5,8 +5,8 @@ import com.zipe.entity.system.SysUserLogonLogEntity
 import com.zipe.repository.system.ISysUserLogonLogRepository
 import com.zipe.repository.system.ISysUserRepository
 import com.zipe.service.IUserService
-import com.zipe.utils.image.ImageUtils
-import com.zipe.utils.log.logger
+import com.zipe.util.image.ImageUtils
+import com.zipe.util.log.logger
 import com.zipe.vo.SysUserVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder

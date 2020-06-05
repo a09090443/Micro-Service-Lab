@@ -4,7 +4,7 @@ import com.zipe.entity.SysAuthorityEntity
 import com.zipe.entity.SysUserEntity
 import com.zipe.exception.UserNotActivatedException
 import com.zipe.service.IUserService
-import com.zipe.utils.log.logger
+import com.zipe.util.log.logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

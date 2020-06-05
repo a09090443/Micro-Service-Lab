@@ -4,7 +4,7 @@ import com.zipe.base.service.BaseService
 import com.zipe.entity.system.SysMenuEntity
 import com.zipe.repository.system.ISysMenuRepository
 import com.zipe.service.ISysMenuService
-import com.zipe.utils.log.logger
+import com.zipe.util.log.logger
 import com.zipe.vo.SysMenuVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

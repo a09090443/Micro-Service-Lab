@@ -5,16 +5,11 @@ import com.zipe.entity.SysUserLogonLogEntity
 import com.zipe.repository.ISysUserLogonLogRepository
 import com.zipe.repository.ISysUserRepository
 import com.zipe.service.IUserService
-import com.zipe.utils.image.ImageUtils
-import com.zipe.utils.log.logger
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import com.zipe.util.log.logger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cache.annotation.Cacheable
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 
 @Transactional
 @Service("userService")

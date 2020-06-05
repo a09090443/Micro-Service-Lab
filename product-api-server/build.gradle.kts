@@ -27,7 +27,7 @@ dependencies {
     implementation("com.graphql-java:graphql-spring-boot-starter:${property("graphqlVersion")}")
     implementation("com.graphql-java:graphiql-spring-boot-starter:${property("graphqlVersion")}")
     implementation("com.graphql-java:graphql-java-tools:${property("graphqlJavaVersion")}")
-    implementation(project(":utility"))
+    implementation(project(":core"))
 }
 
 //springBoot {

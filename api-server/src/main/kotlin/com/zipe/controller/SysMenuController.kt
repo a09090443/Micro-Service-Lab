@@ -2,7 +2,7 @@ package com.zipe.controller
 
 import com.zipe.base.controller.BaseController
 import com.zipe.service.ISysMenuService
-import com.zipe.utils.log.logger
+import com.zipe.util.log.logger
 import com.zipe.vo.SysMenuVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping

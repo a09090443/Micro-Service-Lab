@@ -3,7 +3,7 @@ package com.zipe.controller
 import com.zipe.base.controller.BaseController
 import com.zipe.entity.system.SysUserEntity
 import com.zipe.service.IUserService
-import com.zipe.utils.log.logger
+import com.zipe.util.log.logger
 import com.zipe.vo.SysUserVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity

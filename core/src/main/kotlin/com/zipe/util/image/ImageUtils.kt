@@ -1,4 +1,4 @@
-package com.zipe.utils.image
+package com.zipe.util.image
 
 object ImageUtils {
 
