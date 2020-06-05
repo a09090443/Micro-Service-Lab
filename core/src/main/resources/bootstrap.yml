@@ -1,0 +1,12 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: core
+
+server:
+  port: 8080
+
+application:
+  cache:
+    enable: true
