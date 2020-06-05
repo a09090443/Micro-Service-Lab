@@ -28,9 +28,9 @@ class RedisConfig : CachingConfigurerSupport() {
     @Bean
     fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, String> {
 
-        val redisTemplate = RedisTemplate<String, String>()
-        redisTemplate.setConnectionFactory(factory)
-        return redisTemplate
+        return RedisTemplate<String, String>().apply {
+            setConnectionFactory(factory)
+        }
     }
 
     @Bean
