@@ -18,7 +18,6 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializationContext
 import java.time.Duration
 
-
 @Configuration
 @EnableConfigurationProperties(CacheProperties::class)
 @EnableCaching
@@ -37,7 +36,7 @@ class RedisConfig : CachingConfigurerSupport() {
     @Bean
     fun cacheManager(factory: RedisConnectionFactory): CacheManager {
 
-        if (cacheProperties.enable) {
+        return if (cacheProperties.enable) {
             val pair = RedisSerializationContext.SerializationPair.fromSerializer(GenericJackson2JsonRedisSerializer())
             val defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(
                 Duration.ofHours(1)
@@ -47,10 +46,10 @@ class RedisConfig : CachingConfigurerSupport() {
                 k to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.parse(v))
             }.toMap()
 
-            return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(factory))
+            RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(factory))
                 .cacheDefaults(defaultCacheConfig).withInitialCacheConfigurations(initialCacheConfiguration).build()
         } else {
-            return NoOpCacheManager()
+            NoOpCacheManager()
         }
 
     }
