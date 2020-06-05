@@ -1,6 +1,3 @@
-import org.gradle.api.tasks.bundling.Jar
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
     kotlin("jvm")
 }
@@ -44,8 +41,8 @@ dependencies {
 
     api("org.slf4j:slf4j-api:${property("slf4jApiVersion")}")
 
-    implementation("commons-io:commons-io:${property("commonIoVersion")}")
-    implementation("com.googlecode.log4jdbc:log4jdbc:${property("log4jdbcVersion")}")
+    api("commons-io:commons-io:${property("commonIoVersion")}")
+    api("com.googlecode.log4jdbc:log4jdbc:${property("log4jdbcVersion")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
