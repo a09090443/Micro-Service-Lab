@@ -32,19 +32,19 @@ abstract class BaseController {
      * This method returns the principal[user-name] of logged-in user.
      */
     protected open fun getPrincipal(): String {
-        var userName: String = ""
         val principal = SecurityContextHolder.getContext().authentication.principal
-        userName = if (principal is UserDetails) {
-            (principal as UserDetails).username
+        return if (principal is UserDetails) {
+            principal.username
         } else {
             principal.toString()
         }
-        return userName
     }
 
     protected open fun getMessage(key: String, vararg args: String): String {
         return if (key.isBlank()) {
             ""
-        } else messageSource.getMessage(key, args, currentLocale)
+        } else {
+            messageSource.getMessage(key, args, currentLocale)
+        }
     }
 }
