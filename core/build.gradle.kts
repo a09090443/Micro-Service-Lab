@@ -26,6 +26,8 @@ dependencies {
     api("org.springframework.security:spring-security-config")
     api("org.springframework.security:spring-security-web")
 
+    api("org.springframework.hateoas:spring-hateoas:1.1.0.RELEASE")
+
     api("com.graphql-java:graphql-spring-boot-starter:${property("graphqlVersion")}")
     api("com.graphql-java:graphiql-spring-boot-starter:${property("graphqlVersion")}")
     api("com.graphql-java:graphql-java-tools:${property("graphqlJavaVersion")}")
@@ -44,7 +46,4 @@ dependencies {
     api("commons-io:commons-io:${property("commonIoVersion")}")
     api("com.googlecode.log4jdbc:log4jdbc:${property("log4jdbcVersion")}")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
