@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":core"))
+    implementation(kotlin("stdlib-jdk8"))
 
     implementation("org.springframework.cloud:spring-cloud-config-server")
 }
