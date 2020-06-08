@@ -15,8 +15,12 @@ import org.springframework.data.redis.cache.RedisCacheWriter
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
+import org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair
+import org.springframework.data.redis.serializer.StringRedisSerializer
 import java.time.Duration
+
 
 @Configuration
 @EnableConfigurationProperties(CacheProperties::class)
@@ -26,10 +30,28 @@ class RedisConfig : CachingConfigurerSupport() {
     lateinit var cacheProperties: CacheProperties
 
     @Bean
+    fun redisCacheConfiguration(): RedisCacheConfiguration? {
+        var cacheConfiguration =
+            RedisCacheConfiguration.defaultCacheConfig()
+        //有效时间
+        cacheConfiguration = cacheConfiguration.entryTtl(Duration.ofMinutes(1))
+        //修复热部署时的缓存异常
+        val redisSerializer =
+            JdkSerializationRedisSerializer(javaClass.classLoader)
+        val serializationPair: SerializationPair<*> = SerializationPair.fromSerializer(redisSerializer)
+        cacheConfiguration = cacheConfiguration.serializeValuesWith(serializationPair)
+        return cacheConfiguration
+    }
+
+    @Bean
     fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, String> {
 
         return RedisTemplate<String, String>().apply {
-            setConnectionFactory(factory)
+            this.setConnectionFactory(factory)
+            this.keySerializer = StringRedisSerializer();
+            this.valueSerializer = StringRedisSerializer();
+            this.hashKeySerializer = StringRedisSerializer();
+            this.setHashValueSerializer(StringRedisSerializer());
         }
     }
 
@@ -37,10 +59,16 @@ class RedisConfig : CachingConfigurerSupport() {
     fun cacheManager(factory: RedisConnectionFactory): CacheManager {
 
         return if (cacheProperties.enable) {
-            val pair = RedisSerializationContext.SerializationPair.fromSerializer(GenericJackson2JsonRedisSerializer())
-            val defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(
-                Duration.ofHours(1)
-            )
+            //修复热部署时的缓存异常
+            val redisSerializer = JdkSerializationRedisSerializer(javaClass.classLoader)
+
+            val serializationPair: SerializationPair<*> = SerializationPair.fromSerializer(redisSerializer)
+
+            val defaultCacheConfig =
+                RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(serializationPair).entryTtl(
+                    Duration.ofHours(1)
+                )
+
 
             val initialCacheConfiguration = cacheProperties.key.map { (k, v) ->
                 k to RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.parse(v))

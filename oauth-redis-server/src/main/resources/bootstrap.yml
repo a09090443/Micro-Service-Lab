@@ -1,4 +1,7 @@
 spring:
+  devtools:
+    restart:
+      enabled: true
   main:
     allow-bean-definition-overriding: true
   application:
