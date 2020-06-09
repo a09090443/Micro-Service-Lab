@@ -4,6 +4,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "hibernate")
 data class HibernateProperties(
-    var enable: Boolean = true,
-    var key: Map<String, String> = mapOf()
+    var dialect: String = "",
+    var showSql: Boolean = false,
+    var formatSql: Boolean = false,
+    var factoryClass: String = "",
+    var useSecondLevelCache: Boolean = false,
+    var useQueryCache: Boolean = false,
+    var useMinimalPuts: Boolean = false
 )
