@@ -56,6 +56,9 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     lateinit var passwordEncoder: PasswordEncoder
 
     @Autowired
+    private val redisAuthenticationCodeServices: RedisAuthenticationCodeServices? = null
+
+    @Autowired
     private val connectionFactory: RedisConnectionFactory? = null
 
     @Value("\${config.oauth2.privateKey}")
@@ -102,10 +105,10 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
         return JdbcApprovalStore(dataSource)
     }
 
-    @Bean
-    fun authorizationCodeServices(): AuthorizationCodeServices {
-        return JdbcAuthorizationCodeServices(dataSource)
-    }
+//    @Bean
+//    fun authorizationCodeServices(): AuthorizationCodeServices {
+//        return JdbcAuthorizationCodeServices(dataSource)
+//    }
 
     override fun configure(security: AuthorizationServerSecurityConfigurer) {
 //		security.allowFormAuthenticationForClients()
@@ -124,7 +127,7 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
             .approvalStore(approvalStore())
             .authenticationManager(authenticationManager)
             .userDetailsService(userDetailsService)
-            .authorizationCodeServices(authorizationCodeServices())
+            .authorizationCodeServices(redisAuthenticationCodeServices)
 //            .tokenEnhancer(tokenEnhancer())
 //            .tokenStore(tokenStore())
             .tokenGranter(tokenGranter())
@@ -151,7 +154,7 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
 
     private fun getDefaultTokenGranters(): List<TokenGranter?>? {
         val tokenServices: AuthorizationServerTokenServices = tokenServices()
-        val authorizationCodeServices = authorizationCodeServices()
+        val authorizationCodeServices = redisAuthenticationCodeServices
         val requestFactory = requestFactory()
 
         val tokenGranters = mutableListOf<TokenGranter>()
