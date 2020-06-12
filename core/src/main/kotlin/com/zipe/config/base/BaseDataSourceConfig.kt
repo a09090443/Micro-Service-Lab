@@ -1,15 +1,16 @@
 package com.zipe.config.base
 
 import com.zaxxer.hikari.HikariConfig
+import com.zipe.model.HibernateProperties
+import org.hibernate.cfg.Environment
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.core.env.Environment
 
 open class BaseDataSourceConfig {
 
     @Autowired
-    protected lateinit var env: Environment
+    lateinit var hibernateProperties: HibernateProperties
 
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     @Bean("baseHikariConfig")
@@ -18,13 +19,14 @@ open class BaseDataSourceConfig {
     }
 
     open fun hibernateConfig(): MutableMap<String, String?> {
+
         val jpaProperties: MutableMap<String, String?> = mutableMapOf()
-        jpaProperties["hibernate.dialect"] = env.getProperty("hibernate.dialect")
-        jpaProperties["hibernate.format_sql"] = env.getProperty("hibernate.format_sql")
-        jpaProperties["hibernate.cache.region.factory_class"] = env.getProperty("hibernate.cache.region.factory_class")
-        jpaProperties["hibernate.cache.use_second_level_cache"] = env.getProperty("hibernate.cache.use_second_level_cache")
-        jpaProperties["hibernate.cache.use_query_cache"] = env.getProperty("hibernate.cache.use_query_cache")
-        jpaProperties["hibernate.cache.use_minimal_puts"] = env.getProperty("hibernate.cache.use_minimal_puts")
+        jpaProperties[Environment.DIALECT] = hibernateProperties.dialect
+        jpaProperties[Environment.FORMAT_SQL] = hibernateProperties.showSql.toString()
+        jpaProperties[Environment.CACHE_REGION_FACTORY] = hibernateProperties.factoryClass
+        jpaProperties[Environment.USE_SECOND_LEVEL_CACHE] = hibernateProperties.useSecondLevelCache.toString()
+        jpaProperties[Environment.USE_QUERY_CACHE] = hibernateProperties.useQueryCache.toString()
+        jpaProperties[Environment.USE_MINIMAL_PUTS] = hibernateProperties.useMinimalPuts.toString()
         return jpaProperties
     }
 }
