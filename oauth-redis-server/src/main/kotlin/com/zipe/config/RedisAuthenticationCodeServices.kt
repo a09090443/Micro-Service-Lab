@@ -11,8 +11,9 @@ import org.springframework.util.Assert
 @Service
 class RedisAuthenticationCodeServices(connectionFactory: RedisConnectionFactory) : RandomValueAuthorizationCodeServices() {
     private val connectionFactory: RedisConnectionFactory
-    private val connection: RedisConnection
-        get() = connectionFactory.connection
+    private val connection: RedisConnection = connectionFactory.connection
+
+    private val AUTH_CODE_KEY = "my_code"
 
     //redis存储
     override fun store(code: String, authentication: OAuth2Authentication) {
@@ -55,10 +56,6 @@ class RedisAuthenticationCodeServices(connectionFactory: RedisConnectionFactory)
             conn.close()
         }
         return null
-    }
-
-    companion object {
-        private const val AUTH_CODE_KEY = "my_code"
     }
 
     init {
