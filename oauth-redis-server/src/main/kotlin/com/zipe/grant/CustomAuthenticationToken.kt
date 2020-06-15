@@ -3,7 +3,7 @@ package com.zipe.grant
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
 
-class CustomAuthenticationToken(authorities: Collection<out GrantedAuthority>?, username: Any?) :
+class CustomAuthenticationToken(authorities: Collection<GrantedAuthority>?, username: Any?) :
     AbstractAuthenticationToken(authorities) {
 
     private val principal = username
