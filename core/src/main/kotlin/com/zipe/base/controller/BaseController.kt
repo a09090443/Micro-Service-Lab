@@ -16,7 +16,7 @@ abstract class BaseController {
     protected lateinit var request: HttpServletRequest
     protected lateinit var response: HttpServletResponse
 
-    protected lateinit var currentLocale: Locale
+    private lateinit var currentLocale: Locale
 
     @Autowired
     protected lateinit var messageSource: MessageSource

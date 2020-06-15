@@ -33,9 +33,9 @@ class RedisConfig : CachingConfigurerSupport() {
     fun redisCacheConfiguration(): RedisCacheConfiguration? {
         var cacheConfiguration =
             RedisCacheConfiguration.defaultCacheConfig()
-        //有效时间
+        //Expire time
         cacheConfiguration = cacheConfiguration.entryTtl(Duration.ofMinutes(1))
-        //修复热部署时的缓存异常
+        //Fix cache error while hot deploy
         val redisSerializer =
             JdkSerializationRedisSerializer(javaClass.classLoader)
         val serializationPair: SerializationPair<*> = SerializationPair.fromSerializer(redisSerializer)
@@ -59,7 +59,7 @@ class RedisConfig : CachingConfigurerSupport() {
     fun cacheManager(factory: RedisConnectionFactory): CacheManager {
 
         return if (cacheProperties.enable) {
-            //修复热部署时的缓存异常
+            //Fix cache error while hot deploy
             val redisSerializer = JdkSerializationRedisSerializer(javaClass.classLoader)
 
             val serializationPair: SerializationPair<*> = SerializationPair.fromSerializer(redisSerializer)
