@@ -120,3 +120,9 @@ CREATE TABLE `sys_user_logon_log` (
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+CREATE TABLE `current_status` (
+  `status_id` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `status_name` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
