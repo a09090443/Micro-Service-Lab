@@ -7,21 +7,21 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication
 import org.springframework.security.oauth2.provider.code.RandomValueAuthorizationCodeServices
 import org.springframework.stereotype.Service
 import org.springframework.util.Assert
+import java.nio.charset.StandardCharsets
+
+const val AUTH_CODE_KEY = "oauth:code"
 
 @Service
 class RedisAuthenticationCodeServices(connectionFactory: RedisConnectionFactory) : RandomValueAuthorizationCodeServices() {
     private val connectionFactory: RedisConnectionFactory
     private val connection: RedisConnection = connectionFactory.connection
 
-    private val AUTH_CODE_KEY = "my_code"
-
-    //redis存储
     override fun store(code: String, authentication: OAuth2Authentication) {
         val conn = connection
         try {
             conn.hSet(
-                AUTH_CODE_KEY.toByteArray(charset("utf-8")),
-                code.toByteArray(charset("utf-8")),
+                AUTH_CODE_KEY.toByteArray(StandardCharsets.UTF_8),
+                code.toByteArray(StandardCharsets.UTF_8),
                 SerializationUtils.serialize(authentication)
             )
         } catch (e: Exception) {
@@ -37,8 +37,8 @@ class RedisAuthenticationCodeServices(connectionFactory: RedisConnectionFactory)
                 authentication = SerializationUtils
                     .deserialize(
                         conn.hGet(
-                            AUTH_CODE_KEY.toByteArray(charset("utf-8")),
-                            code.toByteArray(charset("utf-8"))
+                            AUTH_CODE_KEY.toByteArray(StandardCharsets.UTF_8),
+                            code.toByteArray(StandardCharsets.UTF_8)
                         )
                     )
             } catch (e: Exception) {
@@ -46,7 +46,7 @@ class RedisAuthenticationCodeServices(connectionFactory: RedisConnectionFactory)
             }
             if (authentication != null) {
                 conn.hDel(
-                    AUTH_CODE_KEY.toByteArray(charset("utf-8")), code.toByteArray(charset("utf-8"))
+                    AUTH_CODE_KEY.toByteArray(StandardCharsets.UTF_8), code.toByteArray(StandardCharsets.UTF_8)
                 )
             }
             return authentication!!
