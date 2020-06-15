@@ -21,40 +21,42 @@
 					"id": "5dce50b1-86be-4624-b15e-057aa16d773d",
 					"name": "insertproduct_Graphql",
 					"url": "{{resource-jwt-host}}/graphql",
-					"description": "",
+					"description": null,
 					"data": [],
-					"dataOptions": null,
+					"dataOptions": {
+						"graphql": {}
+					},
 					"dataMode": "graphql",
 					"headerData": [
 						{
-							"description": "",
+							"description": null,
 							"enabled": true,
 							"key": "Content-Type",
 							"type": "text",
 							"value": "application/json"
 						},
 						{
-							"description": "",
+							"description": null,
 							"enabled": true,
 							"key": "Authorization",
 							"type": "text",
-							"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MDE2MzM2MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI0NmFjZjMyMS0wMDQ2LTRhNjAtYTJmYy0wM2VlYWEwMzY3NTgiLCJjbGllbnRfaWQiOiJwYXNzd29yZF90ZXN0In0.ZzN-oUkYmRdDnQ_EmyH8O_UB55ljKGy6YjxeeKu4S1rV91y4kPf4AH8W9Hn_olp3I-ZxhWUUNQknFfNQA2AM8ci9KaBISvTkXeXc_NVWsqAcbtabtd_392UgjyP4KqKO6MLf3ZHIRxpkEEba2dTP0SgaXbCju3q1Uc0g5D0ibNM"
+							"value": "Bearer {{access_token}}"
 						}
 					],
 					"method": "POST",
 					"pathVariableData": [],
 					"queryParams": [],
 					"auth": null,
-					"events": [],
+					"events": null,
 					"folder": null,
 					"currentHelper": null,
 					"helperAttributes": null,
 					"collectionId": "47d330e7-dbce-4ab0-838e-39158bcbf11d",
 					"graphqlModeData": {
-						"query": "mutation {\n  insertProduct(product: {name: \"ps2\", price: 100, inventory: 50})\n}\n",
+						"query": "mutation {\n  insertProduct(input: {name: \"ps2\", price: 500, inventory: 10})\n}\n",
 						"variables": ""
 					},
-					"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MDE2MzM2MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI0NmFjZjMyMS0wMDQ2LTRhNjAtYTJmYy0wM2VlYWEwMzY3NTgiLCJjbGllbnRfaWQiOiJwYXNzd29yZF90ZXN0In0.ZzN-oUkYmRdDnQ_EmyH8O_UB55ljKGy6YjxeeKu4S1rV91y4kPf4AH8W9Hn_olp3I-ZxhWUUNQknFfNQA2AM8ci9KaBISvTkXeXc_NVWsqAcbtabtd_392UgjyP4KqKO6MLf3ZHIRxpkEEba2dTP0SgaXbCju3q1Uc0g5D0ibNM\n",
+					"headers": "Content-Type: application/json\nAuthorization: Bearer {{access_token}}\n",
 					"pathVariables": {}
 				},
 				{
@@ -144,8 +146,8 @@
 			"variables": [],
 			"order": [
 				"bda4cab7-f13a-47c5-9e1f-163bd8de0b29",
-				"697bb476-ba3b-4486-b755-ef38a3ac435c",
-				"0ccec2fb-5d61-4990-8298-f27d16dbc507"
+				"0ccec2fb-5d61-4990-8298-f27d16dbc507",
+				"d09286dd-0e61-4e30-8c4a-f8aba3362f9b"
 			],
 			"folders_order": [],
 			"protocolProfileBehavior": {},
@@ -154,8 +156,8 @@
 				{
 					"id": "0ccec2fb-5d61-4990-8298-f27d16dbc507",
 					"name": "oauth-token-password-type",
-					"url": "{{auth-host}}/oauth/token?grant_type=password&username=admin&password=admin&client_id=password_test&client_secret=secret",
-					"description": "",
+					"url": "{{auth-host}}/oauth/token?grant_type=password&username=admin&password=admin",
+					"description": null,
 					"data": null,
 					"dataOptions": null,
 					"dataMode": null,
@@ -167,86 +169,61 @@
 							"key": "grant_type",
 							"value": "password",
 							"equals": true,
-							"description": "",
+							"description": null,
 							"enabled": true
 						},
 						{
 							"key": "username",
 							"value": "admin",
 							"equals": true,
-							"description": "",
+							"description": null,
 							"enabled": true
 						},
 						{
 							"key": "password",
 							"value": "admin",
 							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_id",
-							"value": "password_test",
-							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_secret",
-							"value": "secret",
-							"equals": true,
-							"description": "",
+							"description": null,
 							"enabled": true
 						}
 					],
-					"auth": null,
-					"events": [],
-					"folder": null,
-					"currentHelper": null,
-					"helperAttributes": null,
-					"collectionId": "ef2082bb-f465-4009-b1b5-52c7fbb614df",
-					"headers": "",
-					"pathVariables": {}
-				},
-				{
-					"id": "697bb476-ba3b-4486-b755-ef38a3ac435c",
-					"name": "oauth-token-implicit-type",
-					"url": "{{auth-host}}/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret",
-					"description": "",
-					"data": null,
-					"dataOptions": null,
-					"dataMode": null,
-					"headerData": [],
-					"method": "POST",
-					"pathVariableData": [],
-					"queryParams": [
+					"auth": {
+						"type": "basic",
+						"basic": [
+							{
+								"key": "password",
+								"value": "secret",
+								"type": "string"
+							},
+							{
+								"key": "username",
+								"value": "password_test",
+								"type": "string"
+							}
+						]
+					},
+					"events": [
 						{
-							"key": "grant_type",
-							"value": "client_credentials",
-							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_id",
-							"value": "client_test",
-							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_secret",
-							"value": "secret",
-							"equals": true,
-							"description": "",
-							"enabled": true
+							"listen": "test",
+							"script": {
+								"id": "91ad0618-01e2-469f-9c33-ee51055720ed",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
-					"auth": null,
-					"events": [],
 					"folder": null,
-					"currentHelper": null,
-					"helperAttributes": null,
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"access_token\", data.access_token);",
+					"currentHelper": "basicAuth",
+					"helperAttributes": {
+						"id": "basic",
+						"username": "password_test",
+						"password": "secret"
+					},
 					"collectionId": "ef2082bb-f465-4009-b1b5-52c7fbb614df",
 					"headers": "",
 					"pathVariables": {}
@@ -254,8 +231,8 @@
 				{
 					"id": "bda4cab7-f13a-47c5-9e1f-163bd8de0b29",
 					"name": "oauth-token-client-type",
-					"url": "{{auth-host}}/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret",
-					"description": "",
+					"url": "{{auth-host}}/oauth/token?grant_type=client_credentials",
+					"description": null,
 					"data": null,
 					"dataOptions": null,
 					"dataMode": null,
@@ -267,29 +244,106 @@
 							"key": "grant_type",
 							"value": "client_credentials",
 							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_id",
-							"value": "client_test",
-							"equals": true,
-							"description": "",
-							"enabled": true
-						},
-						{
-							"key": "client_secret",
-							"value": "secret",
-							"equals": true,
-							"description": "",
+							"description": null,
 							"enabled": true
 						}
 					],
-					"auth": null,
-					"events": [],
+					"auth": {
+						"type": "basic",
+						"basic": [
+							{
+								"key": "username",
+								"value": "client_test",
+								"type": "string"
+							},
+							{
+								"key": "password",
+								"value": "secret",
+								"type": "string"
+							}
+						]
+					},
+					"events": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f95d7223-1d81-4236-9b59-3c3192b97eca",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"folder": null,
-					"currentHelper": null,
-					"helperAttributes": null,
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"access_token\", data.access_token);",
+					"currentHelper": "basicAuth",
+					"helperAttributes": {
+						"id": "basic",
+						"username": "client_test",
+						"password": "secret"
+					},
+					"collectionId": "ef2082bb-f465-4009-b1b5-52c7fbb614df",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "d09286dd-0e61-4e30-8c4a-f8aba3362f9b",
+					"name": "oauth-token-authorized",
+					"url": "{{auth-host}}/test/test",
+					"description": null,
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "accessToken",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MjMxOTQ1MywiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI2ZTViY2M0YS05NTQ5LTRkNjUtYTIwZC02ZGYwMDlmYzlhMjUiLCJjbGllbnRfaWQiOiJhdXRoX3Rlc3QifQ.OWK0chMtYbQIeKBf-yD1PxCKr4BMW0qYU6IwdS7ILU0o8u3Nq2h4D9qx0wDz7yFgHE9BvtmfSkCfTORLt9vjW7wlQ-4oYrmKMqE5NI0n2zsG2VQinupt0Wvo1I2O3WvgiY2ITcrIXTJTyZMtedoIQnfxqX6R1V1a0MsTcRkERFM",
+								"type": "string"
+							},
+							{
+								"key": "tokenType",
+								"value": "bearer",
+								"type": "string"
+							},
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"events": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17dcb592-074c-4b6a-ab86-4ca55b08a97e",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"access_token\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"folder": null,
+					"preRequestScript": null,
+					"tests": "var data = JSON.parse(responseBody);\npostman.setGlobalVariable(\"access_token\", data.access_token);",
+					"currentHelper": "oAuth2",
+					"helperAttributes": {
+						"id": "oAuth2",
+						"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib2F1dGgyLXJlc291cmNlIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU5MjMxOTQ1MywiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI2ZTViY2M0YS05NTQ5LTRkNjUtYTIwZC02ZGYwMDlmYzlhMjUiLCJjbGllbnRfaWQiOiJhdXRoX3Rlc3QifQ.OWK0chMtYbQIeKBf-yD1PxCKr4BMW0qYU6IwdS7ILU0o8u3Nq2h4D9qx0wDz7yFgHE9BvtmfSkCfTORLt9vjW7wlQ-4oYrmKMqE5NI0n2zsG2VQinupt0Wvo1I2O3WvgiY2ITcrIXTJTyZMtedoIQnfxqX6R1V1a0MsTcRkERFM",
+						"addTokenTo": "header",
+						"tokenType": "bearer"
+					},
 					"collectionId": "ef2082bb-f465-4009-b1b5-52c7fbb614df",
 					"headers": "",
 					"pathVariables": {}
@@ -299,7 +353,7 @@
 	],
 	"environments": [
 		{
-			"id": "c9ca0e58-bdf3-4c38-ae6e-9f42d2eb0145",
+			"id": "78befa49-4d57-4e9b-99a1-bd51a255ebc8",
 			"name": "micro-service - globals",
 			"values": [
 				{
