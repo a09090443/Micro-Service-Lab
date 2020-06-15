@@ -101,6 +101,25 @@ CREATE TABLE `oauth_refresh_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE `oauth_account` (
+  `client_id` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `resource_ids` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `client_secret` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `scope` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `authorized_grant_types` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `web_server_redirect_uri` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `authorities` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `access_token_validity` int(11) DEFAULT NULL,
+  `refresh_token_validity` int(11) DEFAULT NULL,
+  `additional_information` varchar(4096) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `autoapprove` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `create_user` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+
 CREATE TABLE `sys_authority` (
   `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,

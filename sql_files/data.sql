@@ -112,6 +112,22 @@ INSERT INTO oauth_client_details
 (client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
 VALUES('zuul_service', 'oauth2-resource', 'secret', 'read,write', 'authorization_code,implicit', NULL, NULL, NULL, NULL, NULL, 'true');
 
+INSERT INTO oauth_account
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, update_time, update_user, create_time, create_user)
+VALUES('api_service', 'oauth2-resource', '$2a$10$YueSgWJlQC.x.xzEvuu.nuitGsiu3fRrdhKzT9uOLcj1gjkzkKCoa', 'read,write', 'client_credentials', NULL, NULL, NULL, NULL, NULL, 'true', NULL, NULL, NULL, NULL);
+INSERT INTO oauth_account
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, update_time, update_user, create_time, create_user)
+VALUES('auth_test', 'oauth2-resource', '$2a$10$YueSgWJlQC.x.xzEvuu.nuitGsiu3fRrdhKzT9uOLcj1gjkzkKCoa', 'read,write', 'authorization_code,refresh_token', 'http://localhost:8002/test/test', NULL, NULL, NULL, NULL, 'true', NULL, NULL, NULL, NULL);
+INSERT INTO oauth_account
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, update_time, update_user, create_time, create_user)
+VALUES('client_test', 'oauth2-resource', '$2a$10$YueSgWJlQC.x.xzEvuu.nuitGsiu3fRrdhKzT9uOLcj1gjkzkKCoa', 'read,write', 'client_credentials,custom', 'http://www.google.com', NULL, NULL, NULL, NULL, 'true', NULL, NULL, NULL, NULL);
+INSERT INTO oauth_account
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, update_time, update_user, create_time, create_user)
+VALUES('implicit_test', 'oauth2-resource', '$2a$10$YueSgWJlQC.x.xzEvuu.nuitGsiu3fRrdhKzT9uOLcj1gjkzkKCoa', 'read,write', 'implicit,refresh_token', 'http://www.google.com', NULL, NULL, NULL, NULL, 'true', NULL, NULL, NULL, NULL);
+INSERT INTO oauth_account
+(client_id, resource_ids, client_secret, `scope`, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, update_time, update_user, create_time, create_user)
+VALUES('password_test', 'oauth2-resource', '$2a$10$YueSgWJlQC.x.xzEvuu.nuitGsiu3fRrdhKzT9uOLcj1gjkzkKCoa', 'read,write', 'password,refresh_token', NULL, NULL, NULL, NULL, NULL, 'true', NULL, NULL, NULL, NULL);
+
 INSERT INTO game
 (name, `year`, price, product_id, create_time, create_user, update_time, update_user)
 VALUES('惡靈古堡4', '2005', 1000, 3, NULL, NULL, NULL, NULL);
@@ -121,7 +137,7 @@ VALUES('戰神II', '2007', 1000, 3, NULL, NULL, NULL, NULL);
 
 INSERT INTO product
 (name, price, inventory, create_time, create_user, update_time, update_user)
-VALUES('ps', 100, 5, '2020-05-25 14:13:21.000', 'zipe', '2020-05-25 14:13:21.000', 'zipe');
+VALUES('ps', 100, 5, now(), 'zipe', now(), 'zipe');
 INSERT INTO product
 (name, price, inventory, create_time, create_user, update_time, update_user)
-VALUES('ps2', 500, 10, '2020-05-25 14:13:43.000', 'zipe', '2020-05-25 14:13:43.000', 'zipe');
+VALUES('ps2', 500, 10, now(), 'zipe', now(), 'zipe');
