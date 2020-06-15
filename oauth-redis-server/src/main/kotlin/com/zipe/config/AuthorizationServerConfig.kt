@@ -2,6 +2,7 @@ package com.zipe.config
 
 import com.zipe.grant.CustomTokenGranter
 import com.zipe.security.service.CustomClientDetailService
+import com.zipe.security.service.RedisAuthenticationCodeServices
 import com.zipe.security.service.UserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

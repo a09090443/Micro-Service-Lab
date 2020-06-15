@@ -1,4 +1,5 @@
-package com.zipe.config
+package com.zipe.security.service
+
 
 import org.springframework.data.redis.connection.RedisConnection
 import org.springframework.data.redis.connection.RedisConnectionFactory
