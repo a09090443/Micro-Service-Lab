@@ -27,7 +27,6 @@ class DBRoutingAspect {
         val method = getMethod(point)
         val dbRoutin = method.getAnnotation(DBRouting::class.java)
         val datasourceName = dbRoutin.datasourceName
-//        println(getDataSourceName())
         setDataSourceName(datasourceName)
 
         try {

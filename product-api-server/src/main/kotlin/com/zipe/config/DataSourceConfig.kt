@@ -26,25 +26,35 @@ import javax.sql.DataSource
 )
 class DataSourceConfig : BaseDataSourceConfig() {
 
+    @Bean(name = [DBRouting.PRODUCT_DATASOURCE])
+    @ConfigurationProperties(prefix = "spring.datasource.product")
+    @Primary
+    fun productDataSource(): DataSource = DataSourceBuilder.create().build()
+
     @Bean(name = [DBRouting.PRIMARY_DATASOURCE])
     @ConfigurationProperties(prefix = "spring.datasource.primary")
-    @Primary
     fun primaryDataSource(): DataSource = DataSourceBuilder.create().build()
 
     @Bean(name = [DBRouting.SECONDARY_DATASOURCE])
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
     fun secondaryDataSource(): DataSource = DataSourceBuilder.create().build()
 
+    @Bean(name = [DBRouting.THIRD_DATASOURCE])
+    @ConfigurationProperties(prefix = "spring.datasource.third")
+    fun thirdDataSource(): DataSource = DataSourceBuilder.create().build()
+
+    @Bean(name = [DBRouting.FOURTH_DATASOURCE])
+    @ConfigurationProperties(prefix = "spring.datasource.fourth")
+    fun fourthDataSource(): DataSource = DataSourceBuilder.create().build()
+
     @Bean
     fun dataSource(): DynamicDataSource {
         return DynamicDataSource().run {
 
             val targetDataSources = mapOf<Any, Any>(
-                "primaryDataSource" to primaryDataSource(),
-                "secondaryDataSource" to secondaryDataSource()
+                "productDataSource" to productDataSource()
             )
-            dataSourceNames.add(DBRouting.PRIMARY_DATASOURCE)
-            dataSourceNames.add(DBRouting.SECONDARY_DATASOURCE)
+            dataSourceNames.add(DBRouting.PRODUCT_DATASOURCE)
             val dataSource = DynamicDataSource().apply {
                 this.setTargetDataSources(targetDataSources)
                 this.setDefaultTargetDataSource(primaryDataSource())
@@ -54,6 +64,7 @@ class DataSourceConfig : BaseDataSourceConfig() {
         }
     }
 
+    @Primary
     @Bean(name = ["multiEntityManager"])
     fun multiEntityManager(): LocalContainerEntityManagerFactoryBean? {
         val vendorAdapter = HibernateJpaVendorAdapter()

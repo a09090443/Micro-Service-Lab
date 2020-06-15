@@ -37,14 +37,28 @@ spring:
 
     primary:
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:log4jdbc:mysql://192.168.1.150:3306/db3?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      jdbc-url: jdbc:log4jdbc:mysql://192.168.1.150:3306/db2?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       username: dev
       password: 1qaz@WSX
       driver-class-name: net.sf.log4jdbc.DriverSpy
 
     secondary:
       type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:log4jdbc:mysql://192.168.1.150:3306/db3?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: net.sf.log4jdbc.DriverSpy
+
+    third:
+      type: com.zaxxer.hikari.HikariDataSource
       jdbc-url: jdbc:log4jdbc:mysql://192.168.1.150:3306/db4?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      username: dev
+      password: 1qaz@WSX
+      driver-class-name: net.sf.log4jdbc.DriverSpy
+
+    fourth:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:log4jdbc:mysql://192.168.1.150:3306/db5?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       username: dev
       password: 1qaz@WSX
       driver-class-name: net.sf.log4jdbc.DriverSpy
