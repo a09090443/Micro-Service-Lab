@@ -1,6 +1,7 @@
 package com.zipe.controller
 
 import com.zipe.base.controller.BaseController
+import com.zipe.util.common.UserInfoUtil
 import org.springframework.hateoas.MediaTypes
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,6 +15,7 @@ class TestController : BaseController() {
     @GetMapping(value = ["/test"])
     fun test(): ResponseEntity<String> {
 
+        val userInfo = UserInfoUtil.getUserInfo()
         println(this.getPrincipal())
         return "test".let { ResponseEntity.ok(it) }
     }

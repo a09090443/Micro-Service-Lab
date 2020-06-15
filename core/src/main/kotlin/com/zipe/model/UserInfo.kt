@@ -1,4 +1,4 @@
-package com.zipe.base.model
+package com.zipe.model
 
 data class UserInfo(
 
