@@ -3,8 +3,6 @@ package com.zipe.security.service
 import com.zipe.entity.SysUserLogonLogEntity
 import com.zipe.enums.LogonStatusEnum
 import com.zipe.service.IUserService
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
@@ -39,21 +37,21 @@ class LoginSuccessHandler : SavedRequestAwareAuthenticationSuccessHandler() {
     }
 
     fun getIpAddress(request: HttpServletRequest): String {
-        var ip = request?.getHeader("x-forwarded-for") ?: ""
+        var ip = request.getHeader("x-forwarded-for") ?: ""
 
-        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
-            ip = request?.getHeader("Proxy-Client-IP") ?: ""
+        if (ip.isBlank() || "unknown".equals(ip, ignoreCase = true)) {
+            ip = request.getHeader("Proxy-Client-IP") ?: ""
         }
-        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
-            ip = request?.getHeader("WL-Proxy-Client-IP") ?: ""
+        if (ip.isBlank() || "unknown".equals(ip, ignoreCase = true)) {
+            ip = request.getHeader("WL-Proxy-Client-IP") ?: ""
         }
-        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
-            ip = request?.getHeader("HTTP_CLIENT_IP") ?: ""
+        if (ip.isBlank() || "unknown".equals(ip, ignoreCase = true)) {
+            ip = request.getHeader("HTTP_CLIENT_IP") ?: ""
         }
-        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
-            ip = request?.getHeader("HTTP_X_FORWARDED_FOR") ?: ""
+        if (ip.isBlank() || "unknown".equals(ip, ignoreCase = true)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR") ?: ""
         }
-        if (ip.isEmpty() || "unknown".equals(ip, ignoreCase = true)) {
+        if (ip.isBlank() || "unknown".equals(ip, ignoreCase = true)) {
             ip = request.remoteAddr
         }
         return ip
